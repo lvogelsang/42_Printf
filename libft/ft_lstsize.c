@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:55:31 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/10/09 11:53:24 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/10/09 12:31:40 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+// Counts the number of nodes in a list.
 
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-int		ft_printf(const char *input, ...);
-int		ft_istype(char c);
+int	ft_lstsize(t_list *lst)
+{
+	int	len;
 
-size_t	ft_printcharacter(const char *input, va_list args, size_t len);
-
-void	ft_check_type(const char *input, va_list args, size_t len);
-void	ft_printstring(const char *input, va_list args, size_t len);
-
-#endif
+	len = 0;
+	if (lst)
+	{
+		len = 1;
+		while (lst->next)
+		{
+			len++;
+			lst = lst->next;
+		}
+	}
+	return (len);
+}

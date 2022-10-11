@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:55:31 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/10/09 11:01:23 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/10/09 11:52:50 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+// Adds the node 'new' at the beginning of the list.
 
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-int		ft_printf(const char *input, ...);
-int		ft_istype(char c);
-
-size_t	ft_printcharacter(const char *input, va_list args, size_t len);
-
-void	ft_check_type(const char *input, va_list args, size_t len);
-void	ft_printstring(const char *input, va_list args, size_t len);
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new->next = *lst;
+	*lst = new;
+}

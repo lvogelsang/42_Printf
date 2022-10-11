@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:55:31 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/09/26 11:04:13 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/09/29 14:48:45 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+// The memset() function writes len bytes of value c 
+// (converted to an unsigned char) to the string b.
 
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-int		ft_printf(const char *input, ...);
-int		ft_istype(char c);
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t	i;
 
-size_t	ft_printcharacter(const char *input, va_list args, size_t len);
-
-void	ft_check_type(const char *input, va_list args, size_t len);
-void	ft_printstring(const char *input, va_list args, size_t len);
-
-#endif
+	i = 0;
+	while (len)
+	{
+		((unsigned char *)b)[i] = c;
+		len--;
+		i++;
+	}
+	return (b);
+}

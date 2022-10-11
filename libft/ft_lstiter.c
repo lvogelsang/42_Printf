@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:55:31 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/10/09 13:16:15 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/10/09 13:16:57 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+// Iterates the list and applies the function f on the content of each node.
 
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-int		ft_printf(const char *input, ...);
-int		ft_istype(char c);
-
-size_t	ft_printcharacter(const char *input, va_list args, size_t len);
-
-void	ft_check_type(const char *input, va_list args, size_t len);
-void	ft_printstring(const char *input, va_list args, size_t len);
-
-#endif
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
+}

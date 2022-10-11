@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:55:31 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/09/28 09:58:28 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/09/29 11:03:22 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+// The strdup() function allocates sufficient memory for a copy of the string
+// s1, does the copy, and returns a pointer to it.
 
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-int		ft_printf(const char *input, ...);
-int		ft_istype(char c);
+char	*ft_strdup(const char *s1)
+{
+	char	*copy;
 
-size_t	ft_printcharacter(const char *input, va_list args, size_t len);
-
-void	ft_check_type(const char *input, va_list args, size_t len);
-void	ft_printstring(const char *input, va_list args, size_t len);
-
-#endif
+	copy = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (copy == NULL)
+	{
+		return (NULL);
+	}
+	ft_strlcpy(copy, s1, ft_strlen(s1) + 1);
+	return (copy);
+}

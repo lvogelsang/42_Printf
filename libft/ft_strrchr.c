@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:55:31 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/09/27 09:25:15 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/10/08 10:34:42 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+// The strrchr() function is identical to strchr(), except it locates the last
+// occurrence of c.
 
-# include <unistd.h>
-# include <stdarg.h>
+#include "libft.h"
 
-int		ft_printf(const char *input, ...);
-int		ft_istype(char c);
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
+	int	j;
 
-size_t	ft_printcharacter(const char *input, va_list args, size_t len);
-
-void	ft_check_type(const char *input, va_list args, size_t len);
-void	ft_printstring(const char *input, va_list args, size_t len);
-
-#endif
+	c = c % 256;
+	i = ft_strlen(s);
+	if (c == '\0')
+	{
+		s = s + i;
+		return ((char *)s);
+	}
+	s = s + i - 1;
+	j = 0;
+	while (*s && (j < i))
+	{
+		if (*s == c)
+		{
+			return ((char *)s);
+		}
+		j++;
+		s--;
+	}
+	return (NULL);
+}
