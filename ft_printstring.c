@@ -6,13 +6,13 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:36:23 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 15:07:24 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:13:30 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_printstring(const char *input, va_list args, size_t len)
+size_t	ft_printstring(const char *input, va_list args, size_t len)
 {
 	int	i;
 	char	*s;
@@ -29,4 +29,5 @@ void	ft_printstring(const char *input, va_list args, size_t len)
 	{
 		input++;
 	}
+	return (len);
 }

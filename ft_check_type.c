@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:32:49 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:59:45 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:12:44 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_istype(char c)
 	}
 }
 
-void	ft_check_type(const char *input, va_list args, size_t len)
+size_t	ft_check_type(const char *input, va_list args, size_t len)
 {
 	size_t	i;
 
@@ -34,9 +34,9 @@ void	ft_check_type(const char *input, va_list args, size_t len)
 	while (ft_istype(input[i]) == 0)
 		i++;
 	if (input[i] == 'c')
-		ft_printcharacter(input, args, len);
+		len = ft_printcharacter(input, args, len);
 	if (input[i] == 's')
-		ft_printstring(input, args, len);
+		len = ft_printstring(input, args, len);
 /*	if (input[i] == 'p')
 		ft_printpointer(input, args, i, len);
 	if (input[i] == 'd')
@@ -51,6 +51,7 @@ void	ft_check_type(const char *input, va_list args, size_t len)
 		ft_printhexup(input, args, i, len);
 	if (input[i] == '%')
 		ft_printpercentage(input, args, i, len);*/
+	return (len);
 }
 
 

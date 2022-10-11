@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:16:39 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/11 14:57:00 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:15:47 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_printf(const char *input, ...)
 		if (*input == '%')
 		{
 			input++;
-			ft_check_type(input, args, len);
+			len = ft_check_type(input, args, len);
 			input++;
 		}
 		else
@@ -35,5 +35,6 @@ int	ft_printf(const char *input, ...)
 		}
 	}
 	va_end(args);
+	len++;
 	return (len);
 }
