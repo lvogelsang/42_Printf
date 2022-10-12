@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:11:01 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/12 14:48:55 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:20:54 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@
 int	ft_specs(char *str, va_list args)
 {
 	t_spec	specs;
-	int	len;
+	int		len;
 
 	specs = ft_specs_default();
 	specs = ft_specs_flags(str, specs);
 	specs = ft_specs_width(str, specs);
-
 	while (!(ft_strchr(SPECIFIERS, *str)))
 	{
 		str++;
@@ -79,5 +78,4 @@ t_specs	ft_specs_width(char *str, t_specs specs)
 		str++;
 	}
 	return (specs);
-	}
 }
