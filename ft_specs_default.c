@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_t_specification.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/12 14:22:46 by lvogelsa         ###   ########.fr       */
+/*   Created: 2022/10/12 14:13:48 by lvogelsa          #+#    #+#             */
+/*   Updated: 2022/10/12 14:43:56 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+// Creation of a structure that can store all the specifications that
+// need to be applied when printing.
 
-typedef struct	s_specs
+t_specs	ft_spec_default(void)
 {
-	int	hash;
-	int	space;
-	int	plus;
-	int	minus;
-	int	zero;
-	int	width;
-}		t_specs;
+	t_specs	specs;
 
-# define specifiers	"cspdiuxX%"
-
-int	ft_printf(const char *str, ...);
-
-t_specs	ft_spec_default(void);
-
-void	ft_putchar_fd(char c, int fd);
-
-#endif
+	specs.hash = 0;
+	specs.space = 0;
+	specs.plus = 0;
+	specs.minus = 0;
+	specs.zero = 0;
+	specs.width = 0;
+	specs.type = 0;
+	return (specs);
+}

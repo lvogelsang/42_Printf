@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 08:28:32 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/10/11 19:17:39 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/10/12 13:50:08 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm -f
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
-SRCS = 
+SRCS = ft_printf.c 
 
 OBJS = $(SRCS:.c=.o)
 
