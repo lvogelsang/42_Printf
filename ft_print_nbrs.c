@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 11:44:16 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:16:24 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ft_print_nbr(t_specs specs, int n, int i)
 		ft_print_sign(specs, neg);
 	}
 	ft_putnbr_fd(n, 1);
-	if (specs.width > 1 && specs.minus)
+	if (specs.width > i && specs.minus)
 		ft_print_pad(specs, i, ' ');
 }
 
