@@ -6,11 +6,14 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 11:19:21 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:44:16 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+// Print function for the conversion types 'd' and 'i'. These types consider 
+// the '+', ' ', '-', & '0' flags as well as width specifications.
 
 int	ft_print_d_i(t_specs specs, va_list args)
 {
@@ -35,6 +38,38 @@ int	ft_print_d_i(t_specs specs, va_list args)
 	}
 	return (len);
 }
+
+// Print function for the conversion type 'u'. This type considers the 
+// '-' & '0' flags and width specifications.
+
+
+int	ft_print_u(t_specs specs, va_list args)
+{
+	unsigned int	u;
+	int		i;
+	int	len
+
+	u = va_args(args, unsigned int);
+	i = ft_digitcount(u);
+	specs.plus = 0;
+	specs.space = 0;
+	if (u < 0)
+	{
+		u = u * (-1);
+	}
+	ft_print_nbr(specs, u, i);
+	if (specs.width > i)
+	{
+		len = specs.width;
+	}
+	else
+	{
+		len = i;
+	}
+	return (len);
+}
+
+// Helper functions for printing the conversion types 'd', 'i', & 'u'.
 
 void	ft_print_nbr(t_specs specs, int n, int i)
 {
