@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 14:53:36 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:48:55 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int	ft_printf(const char *str, ...)
 		{
 			str++;
 			if (*str)
+			{
 				len = len + ft_specs((char *)str, args);
+			}
 			str = ft_printf_help((char *)str);
 		}
 		else

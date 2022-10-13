@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 15:00:28 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:34:54 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ int	ft_print_x_p(t_specs specs, va_list args)
 	int				len;
 
 	x = va_arg(args, unsigned int);
+	len = 0;
+	if (!(x))
+	{
+		if (specs.type == 'p')
+		{
+			ft_putstr_fd("x0", 1);
+			len = 2;
+		}
+		ft_putchar_fd('0', 1);
+		len++;
+		return (len);
+	}
 	hex_str = ft_conv_hex(specs, x);
 	i = ft_strlen(hex_str);
 	if (specs.type == 'p')
@@ -49,7 +61,7 @@ int	ft_print_x_p(t_specs specs, va_list args)
 	}
 	return (len);
 }
-
+// Do a pointer function!!!
 // Helper functions for printing the conversion types 'x', 'X', & 'p'.
 
 char	*ft_conv_hex(t_specs specs, unsigned int x)
@@ -82,8 +94,7 @@ char	*ft_conv_hex(t_specs specs, unsigned int x)
 
 void	ft_print_hex(t_specs specs, char *hex_str, int i)
 {
-	if ((specs.minus || specs.zero || i >= specs.width
-			|| specs.type == 'p') && specs.hash)
+	if ((specs.minus || specs.zero || i >= specs.width) && specs.hash)
 	{
 		ft_putstr_fd("0x", 1);
 	}
