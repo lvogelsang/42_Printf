@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/12 19:25:30 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:31:21 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ int		ft_printf(const char *str, ...);
 int		ft_print_specs(t_specs specs, va_list args);
 int		ft_specs(char *str, va_list args);
 
+size_t	ft_strlen(const char *s);
+
 t_specs	ft_spec_default(void);
 t_specs	ft_specs_flags(char *str, t_specs specs);
 t_specs	ft_specs_width(char *str, t_specs specs);
 
 void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
 
 #endif

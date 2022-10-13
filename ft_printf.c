@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/12 19:18:34 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:36:51 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,16 @@ int	ft_print_specs(t_specs specs, va_list args)
 	int	len;
 
 	len = 0;
-	if (specs.type == 'c' || specs.type == '%')
-		len = ft_print_c_pct(specs, args);
+	if (specs.type == '%')
+		len = ft_print_pct();
+	else if (specs.type == 'c')
+		len = ft_print_c(specs, args);
 	else if (specs.type == 's')
 		len = ft_print_s(specs, args);
-	else if (specs.type == 'd' || specs.type == 'i' || specs.type == 'u')
-		len = ft_print_d_i_u(specs, args);
+	else if (specs.type == 'd' || specs.type == 'i')
+		len = ft_print_d_i(specs, args);
+	else if (specs.type == 'u')
+		len = ft_print_u(specs, args);
 	else if (specs.type == 'X' || specs.type == 'x')
 		len = ft_print_x_X(specs, args);
 	else if (specs.type == 'p')
