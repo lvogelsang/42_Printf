@@ -6,11 +6,11 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 13:16:24 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:53:25 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 // Print function for the conversion types 'd' and 'i'. These types consider 
 // the '+', ' ', '-', & '0' flags as well as width specifications.
@@ -21,7 +21,7 @@ int	ft_print_d_i(t_specs specs, va_list args)
 	int	i;
 	int	len;
 
-	n = va_args(args, int);
+	n = va_arg(args, int);
 	i = ft_digitcount(n);
 	if (specs.plus || specs.space || n < 0)
 	{
@@ -42,14 +42,13 @@ int	ft_print_d_i(t_specs specs, va_list args)
 // Print function for the conversion type 'u'. This type considers the 
 // '-' & '0' flags and width specifications.
 
-
 int	ft_print_u(t_specs specs, va_list args)
 {
 	unsigned int	u;
-	int		i;
-	int	len
+	int				i;
+	int				len;
 
-	u = va_args(args, unsigned int);
+	u = va_arg(args, unsigned int);
 	i = ft_digitcount(u);
 	specs.plus = 0;
 	specs.space = 0;
@@ -74,9 +73,9 @@ int	ft_print_u(t_specs specs, va_list args)
 void	ft_print_nbr(t_specs specs, int n, int i)
 {
 	int	neg;
-	
+
 	neg = 0;
-	if (n < 0)
+	if (n < 0 && n != -2147483648)
 	{
 		neg = 1;
 		n = n * (-1);
@@ -111,7 +110,7 @@ void	ft_print_sign(t_specs specs, int neg)
 	}
 }
 
-void	ft_print_pad(t_specs specs, int	i, char pad)
+void	ft_print_pad(t_specs specs, int i, char pad)
 {
 	while (specs.width - i)
 	{

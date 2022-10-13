@@ -6,14 +6,14 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 13:36:27 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:00:28 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-// Print function for the conversion types 'x', 'X' & 'p'. These types consider the
-// '-', '0', & '#' flags as well as width specifications.
+// Print function for the conversion types 'x', 'X' & 'p'. These types 
+// consider the '-', '0', & '#' flags as well as width specifications.
 
 // The base characters for hexadecimal are "0123456789abcdef" and 
 // "0123456789ABCDEF", respectively. 
@@ -23,14 +23,14 @@
 
 // The address of a pointer is in hexadecimal format.
 
-int	ft_print_x_X_p(t_specs specs, va_list args)
+int	ft_print_x_p(t_specs specs, va_list args)
 {
 	unsigned int	x;
-	char	*hex_str;
-	int	i;
-	int	len;
-	
-	x = va_arg(args, unsigned int)
+	char			*hex_str;
+	int				i;
+	int				len;
+
+	x = va_arg(args, unsigned int);
 	hex_str = ft_conv_hex(specs, x);
 	i = ft_strlen(hex_str);
 	if (specs.type == 'p')
@@ -38,6 +38,7 @@ int	ft_print_x_X_p(t_specs specs, va_list args)
 	if (specs.hash)
 		i = i + 2;
 	ft_print_hex(specs, hex_str, i);
+	free (hex_str);
 	if (specs.width > i)
 	{
 		len = specs.width;
@@ -53,16 +54,17 @@ int	ft_print_x_X_p(t_specs specs, va_list args)
 
 char	*ft_conv_hex(t_specs specs, unsigned int x)
 {
-	char	hex_base[16];
-	int	i;
-	char	hex_str[1024];
-	int	rem;
-	
+	char	*hex_base;
+	int		i;
+	char	*hex_str;
+	int		rem;
+
 	if (specs.type == 'x' || specs.type == 'p')
 		hex_base = "0123456789abcdef";
 	else if (specs.type == 'X')
 		hex_base = "0123456789ABCDEF";
 	i = 0;
+	hex_str = (char *)malloc(100 * sizeof(char));
 	if (x == 0)
 	{
 		hex_str[i] = 0;
@@ -80,8 +82,8 @@ char	*ft_conv_hex(t_specs specs, unsigned int x)
 
 void	ft_print_hex(t_specs specs, char *hex_str, int i)
 {
-	if ((specs.minus || specs.zero || i >= specs.width 
-		|| specs.type == 'p') && specs.hash)
+	if ((specs.minus || specs.zero || i >= specs.width
+			|| specs.type == 'p') && specs.hash)
 	{
 		ft_putstr_fd("0x", 1);
 	}

@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 08:28:32 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/10/12 13:50:08 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/10/13 14:29:03 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -c
 RM = rm -f
 
+SRCS = ft_printf.c \ft_print_chars.c \ft_print_hex.c \ft_print_nbrs.c \
+	ft_specs.c \ft_specs_default.c
+
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
-
-SRCS = ft_printf.c 
 
 OBJS = $(SRCS:.c=.o)
 

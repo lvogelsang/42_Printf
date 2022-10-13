@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 09:36:51 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:53:36 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // va_end(va_list ap)	
 // => Signals that there are no further arguments.
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 // If ft_printf detects a '%' in str, we determine which flags, widths and
 // conversion types have been specified and print the argument accordingly.
@@ -47,13 +47,8 @@ int	ft_printf(const char *str, ...)
 		{
 			str++;
 			if (*str)
-			{
-				len = len + ft_specs(str, args);
-			}
-			while (*str && !(ft_strchr(SPECIFIERS, *str)))
-			{
-				str++;
-			}
+				len = len + ft_specs((char *)str, args);
+			str = ft_printf_help((char *)str);
 		}
 		else
 		{
@@ -64,6 +59,24 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(args);
 	return (len);
+}
+
+// Helper function.
+
+char	*ft_printf_help(char *str)
+{
+	char	*start;
+
+	start = (char *)(str - 1);
+	while (*str && !(ft_strchr(SPECIFIERS, *str)))
+	{
+		str++;
+	}
+	if (!(*str))
+	{
+		str = start;
+	}
+	return (str);
 }
 
 // Determines the conversion type and refers it to the respective 
@@ -84,9 +97,7 @@ int	ft_print_specs(t_specs specs, va_list args)
 		len = ft_print_d_i(specs, args);
 	else if (specs.type == 'u')
 		len = ft_print_u(specs, args);
-	else if (specs.type == 'X' || specs.type == 'x')
-		len = ft_print_x_X(specs, args);
-	else if (specs.type == 'p')
-		len = ft_print_p(specs, args);
+	else if (specs.type == 'X' || specs.type == 'x' || specs.type == 'p')
+		len = ft_print_x_p(specs, args);
 	return (len);
 }

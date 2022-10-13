@@ -6,18 +6,18 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:11:01 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/12 19:20:54 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:53:50 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 // First calls functions to test for flags and width and then determines the
 // conversion type. All this will be stored in the new structure 'specs'. 
 
 int	ft_specs(char *str, va_list args)
 {
-	t_spec	specs;
+	t_specs	specs;
 	int		len;
 
 	specs = ft_specs_default();

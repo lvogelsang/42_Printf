@@ -6,11 +6,11 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 11:49:49 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:10:33 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 // Print function for conversion type '%'. This type doesn`t accept any
 // flags or width specifications.
@@ -30,9 +30,9 @@ int	ft_print_pct(void)
 int	ft_print_c(t_specs specs, va_list args)
 {
 	char	c;
-	int	len;
-	
-	c = va_args(args, char);
+	int		len;
+
+	c = va_arg(args, int);
 	if (specs.width > 1)
 	{
 		len = specs.width;
@@ -60,17 +60,18 @@ int	ft_print_c(t_specs specs, va_list args)
 int	ft_print_s(t_specs specs, va_list args)
 {
 	char	*str;
-	int	i;
+	int		i;
 	int		len;
 
-	str = va_args(args, char *);
-	i = (int)(ft_strlen(str));
+	str = va_arg(args, char *);
 	if (!(str))
 	{
 		ft_putstr_fd("(null)", 1);
 		len = 6;
+		return (len);
 	}
-	else if (specs.width > i)
+	i = (int)(ft_strlen(str));
+	if (specs.width > i)
 	{
 		len = specs.width;
 		ft_print_str(specs, str, i);
@@ -98,6 +99,6 @@ void	ft_print_str(t_specs specs, char *str, int i)
 	}
 	if (!(specs.minus))
 	{
-		ft_putstr_fd(str);
+		ft_putstr_fd(str, 1);
 	}
 }

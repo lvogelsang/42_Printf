@@ -6,11 +6,11 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:13:48 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 08:42:31 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:54:05 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 // Creation of a structure that can store all the specifications that
 // need to be applied when printing.
@@ -30,7 +30,7 @@
 // '0' => Specifies that zero-padding should be used rather than 
 // blank-padding for numeric types. A '-' overrides a '0' if both are used.
 
-t_specs	ft_spec_default(void)
+t_specs	ft_specs_default(void)
 {
 	t_specs	specs;
 
