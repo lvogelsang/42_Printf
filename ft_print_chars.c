@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 15:10:33 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:00:52 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,26 @@ int	ft_print_pct(void)
 // Print function for conversion type 'c'. This type considers the '-' flag
 // and width specifications.
 
-int	ft_print_c(t_specs specs, va_list args)
+int	ft_print_c(t_format format, int c)
 {
-	char	c;
-	int		len;
-
-	c = va_arg(args, int);
-	if (specs.width > 1)
+	int	len;
+	
+	if (format.width > 1)
 	{
-		len = specs.width;
-		if (specs.minus)
+		if (format.minus)
+		{
 			ft_putchar_fd(c, 1);
-		while (specs.width - 1)
+		}
+		while (format.width - 1)
 		{
 			ft_putchar_fd(' ', 1);
-			specs.width--;
+			format.width--;
 		}
-		if (!(specs.minus))
+		if (!(format.minus))
+		{
 			ft_putchar_fd(c, 1);
+		}
+		len = format.width;
 	}
 	else
 	{
@@ -57,48 +59,29 @@ int	ft_print_c(t_specs specs, va_list args)
 // Print function for conversion type 's'. This type considers the '-' flag
 // and width specifications.
 
-int	ft_print_s(t_specs specs, va_list args)
+int	ft_print_s(t_format format, char *s)
 {
-	char	*str;
 	int		i;
+	char	*s_str;
 	int		len;
 
-	str = va_arg(args, char *);
-	if (!(str))
+	if (!(s))
 	{
 		ft_putstr_fd("(null)", 1);
-		len = 6;
-		return (len);
+		return (6);
 	}
-	i = (int)(ft_strlen(str));
-	if (specs.width > i)
+	s_str = ft_strdup(s);
+	i = ft_strlen(s_str);
+	if (format.width > i)
 	{
-		len = specs.width;
-		ft_print_str(specs, str, i);
+		ft_format_adjustment(format, s_str);
+		len = format.width;
 	}
 	else
 	{
-		ft_putstr_fd(str, 1);
+		ft_putstr_fd(s_str, 1);
 		len = i;
 	}
+	free (s_str);
 	return (len);
-}
-
-// Helper function for printing the conversion type 's'.
-
-void	ft_print_str(t_specs specs, char *str, int i)
-{
-	if (specs.minus)
-	{
-		ft_putstr_fd(str, 1);
-	}
-	while (specs.width - i)
-	{
-		ft_putchar_fd(' ', 1);
-		specs.width--;
-	}
-	if (!(specs.minus))
-	{
-		ft_putstr_fd(str, 1);
-	}
 }

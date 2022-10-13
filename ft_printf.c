@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 15:48:55 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:24:50 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@
 
 #include "ft_printf.h"
 
-// If ft_printf detects a '%' in str, we determine which flags, widths and
-// conversion types have been specified and print the argument accordingly.
+// If ft_printf (by using ft_format) detects a '%' in str, we determine 
+// which flags, widths and conversion types have been specified and print 
+// the argument accordingly.
 // If there is no %, we simply print the character.
 
 int	ft_printf(const char *str, ...)
@@ -40,17 +41,29 @@ int	ft_printf(const char *str, ...)
 	int		len;
 
 	va_start(args, str);
+	len = ft_format((char *)str, args);
+	va_end(args);
+	return (len);
+}
+
+int	ft_format(char *str, va_list args)
+{
+	int		len;
+	char	*start;
+
 	len = 0;
 	while (*str)
 	{
 		if (*str == '%')
 		{
+			start = str;
 			str++;
 			if (*str)
-			{
-				len = len + ft_specs((char *)str, args);
-			}
-			str = ft_printf_help((char *)str);
+				len = len + ft_format_specifications(str, args);
+			while (*str && !(ft_strchr(SPECIFIERS, *str)))
+				str++;
+			if (!(*str))
+				str = start;
 		}
 		else
 		{
@@ -59,47 +72,30 @@ int	ft_printf(const char *str, ...)
 		}
 		str++;
 	}
-	va_end(args);
 	return (len);
-}
-
-// Helper function.
-
-char	*ft_printf_help(char *str)
-{
-	char	*start;
-
-	start = (char *)(str - 1);
-	while (*str && !(ft_strchr(SPECIFIERS, *str)))
-	{
-		str++;
-	}
-	if (!(*str))
-	{
-		str = start;
-	}
-	return (str);
 }
 
 // Determines the conversion type and refers it to the respective 
 // print function.
 
-int	ft_print_specs(t_specs specs, va_list args)
+int	ft_print_type(t_format format, va_list args)
 {
 	int	len;
 
 	len = 0;
-	if (specs.type == '%')
+	if (format.type == '%')
 		len = ft_print_pct();
-	else if (specs.type == 'c')
-		len = ft_print_c(specs, args);
-	else if (specs.type == 's')
-		len = ft_print_s(specs, args);
-	else if (specs.type == 'd' || specs.type == 'i')
-		len = ft_print_d_i(specs, args);
-	else if (specs.type == 'u')
-		len = ft_print_u(specs, args);
-	else if (specs.type == 'X' || specs.type == 'x' || specs.type == 'p')
-		len = ft_print_x_p(specs, args);
+	else if (format.type == 'c')
+		len = ft_print_c(format, va_arg(args, int));
+	else if (format.type == 's')
+		len = ft_print_s(format, va_arg(args, char *));
+/*	else if (format.type == 'd' || format.type == 'i')
+		len = ft_print_d_i(format, va_arg(args, int));
+	else if (format.type == 'u')
+		len = ft_print_u(format, va_arg(args, unsigned int));
+	else if (format.type == 'X' || format.type == 'x')
+		len = ft_print_x(format, va_arg(args, unsigned int));
+	else if (format.type == 'p')
+		len = ft_print_p(format, va_arg(args, unsigned int));*/
 	return (len);
 }
