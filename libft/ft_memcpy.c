@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 12:08:00 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/09/29 14:06:19 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:29:18 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	n_copy;
+	unsigned char	*dst_copy;
+	unsigned char	*src_copy;
 
-	n_copy = n;
+	dst_copy = (unsigned char *)dst;
+	src_copy = (unsigned char *)src;
+	if (!n || (!dst && ! src))
+	{
+		return (dst);
+	}
 	while (n)
 	{
-		ft_memset(dst, *(int *)src, 1);
+		*dst_copy = *src_copy;
+		dst_copy++;
+		src_copy++;
 		n--;
-		dst++;
-		src++;
 	}
-	dst = dst - n_copy;
 	return (dst);
 }

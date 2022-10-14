@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 09:35:20 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/10 16:09:28 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:19:08 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*ft_calloc(size_t count, size_t size)
 		size = 1;
 	}
 	total_size = count * size;
-	memzero = malloc(total_size);
+	memzero = (void *)malloc(total_size);
 	if (memzero == NULL)
 	{
 		return (NULL);

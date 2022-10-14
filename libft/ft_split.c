@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 11:51:13 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/09 10:52:18 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:37:59 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,22 @@ int	ft_wordcount(char const *s, char c)
 	return (count);
 }
 
-char	*ft_createword(char const *s, int index, char c)
+char	*ft_createword(char **split, int j, char const *s, char c)
 {
-	int		i;
 	int		x;
-	char	*word;
 
-	i = index;
 	x = 0;
-	while (s[i] != c)
+	while (s[x] != c && s[x] != '\0')
 	{
-		i++;
 		x++;
 	}
-	word = ft_substr(s, index, x);
-	if (word == NULL)
+	split[j] = (char *)malloc((x + 1) * sizeof(char));
+	if (split[j] == NULL)
 	{
 		return (NULL);
 	}
-	return (word);
+	ft_strlcpy(split[j], s, x + 1);
+	return (split[j]);
 }
 
 void	ft_createarr(char **split, char const *s, char c)
@@ -83,14 +80,14 @@ void	ft_createarr(char **split, char const *s, char c)
 	j = 0;
 	if (s[i] != c && s[i] != '\0')
 	{
-		split[j] = ft_createword(s, i, c);
+		ft_createword(split, j, (s + i), c);
 		j++;
 	}
 	while (s[i])
 	{
 		if (ft_sep(s, i, c))
 		{
-			split[j] = ft_createword(s, i + 1, c);
+			ft_createword(split, j, (s + i + 1), c);
 			j++;
 		}
 		i++;

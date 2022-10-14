@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 14:53:25 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/14 12:44:11 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,44 @@
 
 // Print function for the conversion types 'd' and 'i'. These types consider 
 // the '+', ' ', '-', & '0' flags as well as width specifications.
+
+
+// digitcount (check if sign needs to be icnorparted) and create malloc with itoa!
+// if format.plus or format.space append + or blank to start nbr
+// if format.zero & (!(format.minus) && fomrat.plus || format.blank,
+// write sign (str[i]), then send str + 1 to format_adjustments
+//
+// // incorporate x = 0 !!!! for both (includes in itoa);
+
+// for 'u': digitcount, if n < 0, -n, malloc, ft_itoa, send off to format_adjutsments.
+
+
+
+int	ft_print_d_i(t_format format, int n)
+{
+	int		i;
+	char	*numstr;
+	char	sign;
+
+	numstr = ft_itoa(n);
+	i = ft_digitcount(n);
+	if ((format.plus || format.space) && n > 0)
+	{
+		i++;
+		if (format.plus)
+		{
+			sign = "+";
+		}
+		else if (format.space)
+		{
+			sign = " ";
+		}
+		numstr = ft_strjoin(sign, ft_itoa(n), i);
+
+
+
+
+
 
 int	ft_print_d_i(t_specs specs, va_list args)
 {

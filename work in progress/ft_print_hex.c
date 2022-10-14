@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 15:34:54 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:50:11 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 
 // The address of a pointer is in hexadecimal format.
 
+
+
+// 1. Need function that determines length of a hexadecimal number.
+// check if we need to incorporate x0 intou our length.
+// Create hex number with malloc.
+// either write x0 or concat it prior to sending it to format specifications.:wq
+//
 int	ft_print_x_p(t_specs specs, va_list args)
 {
 	unsigned int	x;
@@ -32,7 +39,8 @@ int	ft_print_x_p(t_specs specs, va_list args)
 
 	x = va_arg(args, unsigned int);
 	len = 0;
-	if (!(x))
+	// determine length of hex number + x0 extension?
+	 if (x == 0)
 	{
 		if (specs.type == 'p')
 		{
@@ -43,12 +51,14 @@ int	ft_print_x_p(t_specs specs, va_list args)
 		len++;
 		return (len);
 	}
-	hex_str = ft_conv_hex(specs, x);
+	hex_str = ft_conv_hex(specs, x); //malloc
+	// concat with x0 if applicable and then send to format adjustments. 
+	// if - or 0, write x0 prior to sending, if noting, append it.
 	i = ft_strlen(hex_str);
 	if (specs.type == 'p')
 		specs.hash = 1;
-	if (specs.hash)
-		i = i + 2;
+/*	if (specs.hash)
+		i = i + 2;*/
 	ft_print_hex(specs, hex_str, i);
 	free (hex_str);
 	if (specs.width > i)
@@ -61,7 +71,7 @@ int	ft_print_x_p(t_specs specs, va_list args)
 	}
 	return (len);
 }
-// Do a pointer function!!!
+// Could do togetthr?
 // Helper functions for printing the conversion types 'x', 'X', & 'p'.
 
 char	*ft_conv_hex(t_specs specs, unsigned int x)
@@ -76,22 +86,22 @@ char	*ft_conv_hex(t_specs specs, unsigned int x)
 	else if (specs.type == 'X')
 		hex_base = "0123456789ABCDEF";
 	i = 0;
-	hex_str = (char *)malloc(100 * sizeof(char));
+//	hex_str = (char *)malloc(100 * sizeof(char));
 	if (x == 0)
 	{
-		hex_str[i] = 0;
+		hex_str[i] = '0';
 	}
 	rem = 0;
 	while (x)
 	{
 		rem = x % 16;
 		x = x / 16;
-		hex_str[i] = hex_base[rem];
+		hex_str[i] = hex_base[rem + '48'];
 		i++;
 	}
 	return (hex_str);
 }
-
+/*
 void	ft_print_hex(t_specs specs, char *hex_str, int i)
 {
 	if ((specs.minus || specs.zero || i >= specs.width) && specs.hash)
@@ -115,4 +125,4 @@ void	ft_print_hex(t_specs specs, char *hex_str, int i)
 	{
 		ft_print_pad(specs, i, ' ');
 	}
-}
+}*/
