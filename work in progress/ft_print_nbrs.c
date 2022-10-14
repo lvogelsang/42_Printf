@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/14 12:44:11 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:57:24 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_print_d_i(t_format format, int n)
 		{
 			sign = " ";
 		}
-		numstr = ft_strjoin(sign, ft_itoa(n), i);
+		numstr = ft_strjoin(sign, ft_itoa(n), i); //find a different strategy!
 
 
 
