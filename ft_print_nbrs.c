@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/15 15:28:03 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/15 15:55:05 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ char	*ft_numstr_signed(t_format format, int n)
 
 // Print function for the conversion type 'u'. This type considers the 
 // '-' & '0' flags and width specifications.
+
+// If a negative value is parsed as an unsigned integer, that value
+// is converted to its positive counterpart, i.e., 2^32 - u. 
+// So, in binary, -u and 2^32 - u are identical.
+// Therefore, we cannot use the standard digitcount and itoa functions.
 
 int	ft_print_u(t_format format, unsigned int u)
 {
