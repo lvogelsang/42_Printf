@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_specs.c                                         :+:      :+:    :+:   */
+/*   ft_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:11:01 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 17:37:13 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/15 15:28:34 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	ft_format_specifications(char *str, va_list args)
 {
 	t_format	format;
-	int		len;
+	int			len;
 
 	format = ft_format_default();
 	format = ft_format_flags(str, format);

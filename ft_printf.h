@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 18:26:00 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/15 15:20:39 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,40 @@ typedef struct s_format
 
 # define SPECIFIERS	"cspdiuxX%"
 
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
+char		*ft_itoa(int n);
+char		*ft_numstr_signed(t_format format, int n);
+char		*ft_strchr(const char *s, int c);
+char		*ft_strdup(const char *s1);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_unsigned_itoa(unsigned int u);
 
-int	ft_atoi(const char *str);
-int	ft_format(char *str, va_list args);
-int	ft_format_specifications(char *str, va_list args);
-int	ft_isdigit(int c);
-int	ft_printf(const char *str, ...);
-int	ft_print_c(t_format format, int c);
-int	ft_print_pct(void);
-int	ft_print_s(t_format format, char *s);
-int	ft_print_type(t_format format, va_list args);
+int			ft_atoi(const char *str);
+int			ft_digitcount(int n);
+int			ft_format(char *str, va_list args);
+int			ft_format_specifications(char *str, va_list args);
+int			ft_isdigit(int c);
+int			ft_printf(const char *str, ...);
+int			ft_print_c(t_format format, int c);
+int			ft_print_d_i(t_format format, int n);
+int			ft_print_pct(void);
+int			ft_print_s(t_format format, char *s);
+int			ft_print_type(t_format format, va_list args);
+int			ft_print_u(t_format format, unsigned int u);
+int			ft_unsigned_digitcount(unsigned int u);
 
-size_t	ft_strlen(const char *s);
+size_t		ft_strlen(const char *s);
 
 t_format	ft_format_default(void);
 t_format	ft_format_flags(char *str, t_format format);
 t_format	ft_format_width(char *str, t_format format);
 
-void	ft_default_adjustment(t_format format, char *str);
-void	ft_format_adjustment(t_format format, char *str);
-void	*ft_memset(void *b, int c, size_t len);
-void	ft_minus_adjustment(t_format format, char *str);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_zero_adjustment(t_format format, char *str);
+void		ft_default_adjustment(t_format format, char *str);
+void		ft_format_adjustment(t_format format, char *str);
+void		*ft_memset(void *b, int c, size_t len);
+void		ft_minus_adjustment(t_format format, char *str);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_zero_adjustment(t_format format, char *str);
 
 /*
 char	*ft_conv_hex(t_specs specs, unsigned int x);

@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 08:28:32 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/10/13 18:29:43 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/10/15 13:45:59 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -c
 RM = rm -f
 
 SRCS = ft_format.c \ft_format_adjustment.c \ft_format_default.c \ft_print_chars.c \
-	ft_printf.c
+	ft_print_nbrs.c \ft_printf.c
 
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a

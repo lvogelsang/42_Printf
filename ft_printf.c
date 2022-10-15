@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 18:24:50 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:47:39 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ int	ft_print_type(t_format format, va_list args)
 		len = ft_print_c(format, va_arg(args, int));
 	else if (format.type == 's')
 		len = ft_print_s(format, va_arg(args, char *));
-/*	else if (format.type == 'd' || format.type == 'i')
+	else if (format.type == 'd' || format.type == 'i')
 		len = ft_print_d_i(format, va_arg(args, int));
 	else if (format.type == 'u')
 		len = ft_print_u(format, va_arg(args, unsigned int));
-	else if (format.type == 'X' || format.type == 'x')
+/*	else if (format.type == 'X' || format.type == 'x')
 		len = ft_print_x(format, va_arg(args, unsigned int));
 	else if (format.type == 'p')
 		len = ft_print_p(format, va_arg(args, unsigned int));*/
