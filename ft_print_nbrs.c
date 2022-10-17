@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 10:05:43 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:36:03 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_print_d_i(t_format format, int n)
 	char	*num_str;
 	int		i;
 	int		len;
+	int		x;
 
 	num_str = ft_numstr_signed(format, n);
 	if (num_str == NULL)
@@ -29,11 +30,16 @@ int	ft_print_d_i(t_format format, int n)
 		i++;
 	if (format.width > i)
 	{
-		if (format.zero && !(format.minus)
-			&& (format.plus || format.space))
-			ft_putchar_fd(*num_str++, 1);
-		ft_format_adjustment(format, num_str);
 		len = format.width;
+		x = 0;
+		if (format.zero && !(format.minus)
+			&& (format.plus || format.space || (n < 0)))
+		{
+			ft_putchar_fd(num_str[x], 1);
+			x++;
+			format.width--;
+		}
+		ft_format_adjustment(format, &num_str[x]);
 	}
 	else
 	{

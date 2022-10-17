@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 12:09:46 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:40:50 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ int	ft_print_pct(void)
 
 int	ft_print_c(t_format format, int c)
 {
-	char	*c_str;
-
-	c_str 
 	int	len;
-	
+
 	if (format.width > 1)
 	{
+		len = format.width;
 		if (format.minus)
 		{
 			ft_putchar_fd(c, 1);
@@ -48,7 +46,6 @@ int	ft_print_c(t_format format, int c)
 		{
 			ft_putchar_fd(c, 1);
 		}
-		len = format.width;
 	}
 	else
 	{
