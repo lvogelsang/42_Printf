@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 15:36:03 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:49:52 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ft_print_d_i(t_format format, int n)
 	char	*num_str;
 	int		i;
 	int		len;
-	int		x;
 
 	num_str = ft_numstr_signed(format, n);
 	if (num_str == NULL)
@@ -31,20 +30,12 @@ int	ft_print_d_i(t_format format, int n)
 	if (format.width > i)
 	{
 		len = format.width;
-		x = 0;
-		if (format.zero && !(format.minus)
-			&& (format.plus || format.space || (n < 0)))
-		{
-			ft_putchar_fd(num_str[x], 1);
-			x++;
-			format.width--;
-		}
-		ft_format_adjustment(format, &num_str[x]);
+		ft_numstr_help(format, num_str, n);
 	}
 	else
 	{
-		ft_putstr_fd(num_str, 1);
 		len = i;
+		ft_putstr_fd(num_str, 1);
 	}
 	free (num_str);
 	return (len);
@@ -73,78 +64,17 @@ char	*ft_numstr_signed(t_format format, int n)
 	return (numstr);
 }
 
-// Print function for the conversion type 'u'. This type considers the 
-// '-' & '0' flags and width specifications.
-
-// If a negative value is parsed as an unsigned integer, that value
-// is converted to its positive counterpart, i.e., 2^32 - u. 
-// So, in binary, -u and 2^32 - u are identical.
-// Therefore, we cannot use the standard digitcount and itoa functions.
-
-int	ft_print_u(t_format format, unsigned int u)
+void	ft_numstr_help(t_format format, char *num_str, int n)
 {
-	char	*num_str;
-	int		i;
-	int		len;
+	int	x;
 
-	num_str = ft_unsigned_itoa(u);
-	if (num_str == NULL)
+	x = 0;
+	if (format.zero && !(format.minus)
+		&& (format.plus || format.space || (n < 0)))
 	{
-		return (0);
+		ft_putchar_fd(num_str[x], 1);
+		x++;
+		format.width--;
 	}
-	i = ft_unsigned_digitcount(u);
-	if (format.width > i)
-	{
-		ft_format_adjustment(format, num_str);
-		len = format.width;
-	}
-	else
-	{
-		ft_putstr_fd(num_str, 1);
-		len = i;
-	}
-	free (num_str);
-	return (len);
-}
-
-char	*ft_unsigned_itoa(unsigned int u)
-{
-	int		i;
-	char	*num_str;
-
-	i = ft_unsigned_digitcount(u);
-	num_str = (char *)malloc((i + 1) * sizeof(char));
-	if (num_str == NULL)
-	{
-		return (NULL);
-	}
-	num_str[i] = '\0';
-	if (u == 0)
-	{
-		num_str[0] = '0';
-	}
-	while (u)
-	{
-		i--;
-		num_str[i] = u % 10 + 48;
-		u = u / 10;
-	}
-	return (num_str);
-}
-
-int	ft_unsigned_digitcount(unsigned int u)
-{
-	int	i;
-
-	if (u == 0)
-	{
-		return (1);
-	}
-	i = 0;
-	while (u)
-	{
-		i++;
-		u = u / 10;
-	}
-	return (i);
+	ft_format_adjustment(format, &num_str[x]);
 }

@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 10:59:18 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:50:24 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void		ft_default_adjustment(t_format format, char *str);
 void		ft_format_adjustment(t_format format, char *str);
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_minus_adjustment(t_format format, char *str);
+void		ft_numstr_help(t_format format, char *num_str, int n);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_zero_adjustment(t_format format, char *str);
