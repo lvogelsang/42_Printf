@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 14:00:39 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:07:05 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_format
 	int	minus;
 	int	zero;
 	int	width;
+	int	dot;
+	int	precision;
 	int	type;
 }		t_format;
 
@@ -43,8 +45,8 @@ char		*ft_unsigned_itoa(unsigned int u);
 
 int			ft_atoi(const char *str);
 int			ft_digitcount(int n);
-int			ft_format(char *str, va_list args);
-int			ft_format_specifications(char *str, va_list args);
+int			ft_format(char *str, va_list *args);
+int			ft_format_specifications(char *str, va_list *args);
 int			ft_hex_digitcount(unsigned int x);
 int			ft_isdigit(int c);
 int			ft_printf(const char *str, ...);
@@ -53,10 +55,11 @@ int			ft_print_d_i(t_format format, int n);
 int			ft_print_p(t_format format, size_t ptr);
 int			ft_print_pct(void);
 int			ft_print_s(t_format format, char *s);
-int			ft_print_type(t_format format, va_list args);
+int			ft_print_type(t_format format, va_list *args);
 int			ft_print_u(t_format format, unsigned int u);
 int			ft_print_x(t_format format, unsigned int x);
 int			ft_ptr_digitcount(size_t ptr);
+int			ft_s_format(t_format format, char *s_str);
 int			ft_unsigned_digitcount(unsigned int u);
 
 size_t		ft_strlen(const char *s);

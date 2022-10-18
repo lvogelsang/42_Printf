@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:11:01 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/15 15:28:34 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:04:43 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // First calls functions to test for flags and width and then determines the
 // conversion type. All this will be stored in the new structure 'specs'. 
 
-int	ft_format_specifications(char *str, va_list args)
+int	ft_format_specifications(char *str, va_list *args)
 {
 	t_format	format;
 	int			len;
@@ -23,10 +23,17 @@ int	ft_format_specifications(char *str, va_list args)
 	format = ft_format_default();
 	format = ft_format_flags(str, format);
 	format = ft_format_width(str, format);
-	while (!(ft_strchr(SPECIFIERS, *str)))
-	{
+	while (!(ft_strchr(SPECIFIERS, *str)) && *str != '.')
 		str++;
+	if (*str == '.' && ft_isdigit(*(str + 1)))
+	{
+		format.dot = 1;
+		format.precision = ft_atoi(++str);
 	}
+	else if (*str == '.')
+		format.dot = 1;
+	while (!(ft_strchr(SPECIFIERS, *str)))
+		str++;
 	format.type = *str;
 	len = ft_print_type(format, args);
 	return (len);
@@ -36,7 +43,7 @@ int	ft_format_specifications(char *str, va_list args)
 
 t_format	ft_format_flags(char *str, t_format format)
 {
-	while (!ft_strchr(SPECIFIERS, *str))
+	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
 	{
 		if (*str == '+')
 		{
@@ -60,7 +67,7 @@ t_format	ft_format_flags(char *str, t_format format)
 
 t_format	ft_format_width(char *str, t_format format)
 {
-	while (!(ft_strchr(SPECIFIERS, *str)))
+	while (!(ft_strchr(SPECIFIERS, *str)) && *str != '.')
 	{
 		if (*str == '-')
 		{

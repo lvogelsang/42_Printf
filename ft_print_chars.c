@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 14:40:50 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:29:19 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	ft_print_c(t_format format, int c)
 
 int	ft_print_s(t_format format, char *s)
 {
-	int		i;
 	char	*s_str;
 	int		len;
 
@@ -72,7 +71,25 @@ int	ft_print_s(t_format format, char *s)
 	s_str = ft_strdup(s);
 	if (s_str == NULL)
 		return (0);
+	len = ft_s_format(format, s_str);
+	free (s_str);
+	return (len);
+}
+
+int	ft_s_format(t_format format, char *s_str)
+{
+	int	i;
+	int	len;
+
 	i = ft_strlen(s_str);
+	if (format.dot)
+	{
+		if (format.precision < i)
+		{
+			s_str[format.precision] = '\0';
+			i = format.precision;
+		}
+	}
 	if (format.width > i)
 	{
 		ft_format_adjustment(format, s_str);
@@ -83,6 +100,5 @@ int	ft_print_s(t_format format, char *s)
 		ft_putstr_fd(s_str, 1);
 		len = i;
 	}
-	free (s_str);
 	return (len);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_specs_default.c                                 :+:      :+:    :+:   */
+/*   ft_format_default.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:13:48 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 17:31:34 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:27:22 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_format	ft_format_default(void)
 	format.minus = 0;
 	format.zero = 0;
 	format.width = 0;
+	format.dot = 0;
+	format.precision = 0;
 	format.type = 0;
 	return (format);
 }
