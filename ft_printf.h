@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 15:50:24 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:00:39 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_format
 # define SPECIFIERS	"cspdiuxX%"
 
 char		*ft_hexstr(t_format format, unsigned int x);
-char		*ft_hex_itoa(t_format format, unsigned int x);
+char		*ft_hex_itoa(unsigned int x, char *hex_base);
 char		*ft_itoa(int n);
 char		*ft_numstr_signed(t_format format, int n);
 char		*ft_ptrstr(size_t ptr);
@@ -67,6 +67,7 @@ t_format	ft_format_width(char *str, t_format format);
 
 void		ft_default_adjustment(t_format format, char *str);
 void		ft_format_adjustment(t_format format, char *str);
+void		ft_hexstr_help(t_format format, char *hex_str, unsigned int x);
 void		*ft_memset(void *b, int c, size_t len);
 void		ft_minus_adjustment(t_format format, char *str);
 void		ft_numstr_help(t_format format, char *num_str, int n);

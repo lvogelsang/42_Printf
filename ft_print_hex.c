@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 10:59:42 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:01:09 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,12 @@ int	ft_print_x(t_format format, unsigned int x)
 	if (hex_str == NULL)
 		return (0);
 	i = ft_hex_digitcount(x);
-	if (format.hash)
+	if (format.hash && x != 0)
 		i = i + 2;
 	if (format.width > i)
 	{
-		if (format.zero && !(format.minus)
-			&& (format.hash))
-		{
-			ft_putchar_fd(*hex_str++, 1);
-			ft_putchar_fd(*hex_str++, 1);
-		}
-		ft_format_adjustment(format, hex_str);
 		i = format.width;
+		ft_hexstr_help(format, hex_str, x);
 	}
 	else
 		ft_putstr_fd(hex_str, 1);
@@ -51,33 +45,36 @@ int	ft_print_x(t_format format, unsigned int x)
 
 char	*ft_hexstr(t_format format, unsigned int x)
 {
+	char	*hex_base;
 	char	*prefix;
 	char	*temp;
 	char	*hex_str;
 
-	if (format.hash)
+	if (format.type == 'x')
+		hex_base = "0123456789abcdef";
+	else if (format.type == 'X')
+		hex_base = "0123456789ABCDEF";
+	if (format.hash && x != 0)
 	{
-		prefix = "0x";
-		temp = ft_hex_itoa(format, x);
+		if (format.type == 'x')
+			prefix = "0x";
+		else if (format.type == 'X')
+			prefix = "0X";
+		temp = ft_hex_itoa(x, hex_base);
 		hex_str = ft_strjoin(prefix, temp);
 		free (temp);
 	}
 	else
-	{
-		hex_str = ft_hex_itoa(format, x);
-	}
+		hex_str = ft_hex_itoa(x, hex_base);
 	if (hex_str == NULL)
-	{
 		return (NULL);
-	}
 	return (hex_str);
 }
 
-char	*ft_hex_itoa(t_format format, unsigned int x)
+char	*ft_hex_itoa(unsigned int x, char *hex_base)
 {
 	int		i;
 	char	*hex_str;
-	char	*hex_base;
 
 	i = ft_hex_digitcount(x);
 	hex_str = (char *)malloc((i + 1) * sizeof(char));
@@ -86,10 +83,11 @@ char	*ft_hex_itoa(t_format format, unsigned int x)
 	hex_str[i] = '\0';
 	if (x == 0)
 		hex_str[0] = '0';
-	if (format.type == 'x')
-		hex_base = "0123456789abcdef";
-	else if (format.type == 'X')
-		hex_base = "0123456789ABCDEF";
+	if (x == 80000000)
+	{
+		hex_str = "80000000";
+		return (hex_str);
+	}
 	while (x)
 	{
 		i--;
@@ -107,6 +105,10 @@ int	ft_hex_digitcount(unsigned int x)
 	{
 		return (1);
 	}
+	if (x == 80000000)
+	{
+		return (8);
+	}
 	i = 0;
 	while (x)
 	{
@@ -114,4 +116,19 @@ int	ft_hex_digitcount(unsigned int x)
 		i++;
 	}
 	return (i);
+}
+
+void	ft_hexstr_help(t_format format, char *hex_str, unsigned int x)
+{
+	int	j;
+
+	j = 0;
+	if (format.zero && !(format.minus)
+		&& (format.hash) && x != 0)
+	{
+		ft_putchar_fd(hex_str[j++], 1);
+		ft_putchar_fd(hex_str[j++], 1);
+		format.width = format.width - 2;
+	}
+	ft_format_adjustment(format, &hex_str[j]);
 }
