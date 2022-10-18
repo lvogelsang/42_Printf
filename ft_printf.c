@@ -6,27 +6,16 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 17:34:02 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:57:59 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // This is a simplified version of printf which handles the conversions
 // "cspdiuxX%" and the flags "-0.# +". Here, the syntax of the conversion 
-// specifiers is %[flags][width]type. 
+// specifiers is %[flags][width][.precision]type. 
 
 // In this project, we need to use variadic functions, which can take a 
 // variable number of arguments.
-
-// va_start(va_list ap, last)	
-// => Initialises ap. Last is the name of the last parameter before the 
-// variable argument list.
-
-// va_arg(va_list ap, type)	
-// => Each call modifies ap so that the next call returns the next argument. 
-// The first use after va_start() returns the argument after last.
-
-// va_end(va_list ap)	
-// => Signals that there are no further arguments.
 
 #include "ft_printf.h"
 

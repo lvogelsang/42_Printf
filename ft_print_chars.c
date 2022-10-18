@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 15:29:19 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:56:20 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_print_c(t_format format, int c)
 }
 
 // Print function for conversion type 's'. This type considers the '-' flag
-// and width specifications.
+// and width and precision specifications.
 
 int	ft_print_s(t_format format, char *s)
 {
