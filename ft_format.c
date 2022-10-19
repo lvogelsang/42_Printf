@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:11:01 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 16:04:43 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:53:18 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // First calls functions to test for flags and width and then determines the
 // conversion type. All this will be stored in the new structure 'specs'. 
 
+#include <stdio.h>
 int	ft_format_specifications(char *str, va_list *args)
 {
 	t_format	format;

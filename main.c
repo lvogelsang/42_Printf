@@ -3,8 +3,8 @@
 
 int	main(void)
 {
-	int	i = printf("%.20d\n", 1024);
-	int	j = ft_printf("%.20d\n", 1024);
+	int	i = printf("%.50u\n", 100);
+	int	j = ft_printf("%.50u\n", 100);
 	printf("%d\n%d\n", i, j);
 //	printf("%.0d\n", 2);
 //	ft_printf("%.0d", 2);
