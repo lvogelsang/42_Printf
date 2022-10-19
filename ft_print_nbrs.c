@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 10:28:13 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 17:02:42 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	ft_print_d_i(t_format format, int n)
 	if (num_str == NULL)
 		return (0);
 	if (format.dot)
+	{
+		format.zero = 0;
 		i = ft_numstr_precision(format, num_str, n);
+	}
 	else
 		i = ft_strlen(num_str);
 	if (format.width > i)
@@ -73,7 +76,10 @@ int	ft_numstr_precision(t_format format, char *num_str, int n)
 	char	*copy;
 	int		len;
 
-	format.zero = 0;
+	if (format.precision == 0)
+	{
+		num_str[0] = '\0';
+	}
 	if ((format.precision > (int)ft_strlen(num_str))
 		|| ((format.plus || format.space || (n < 0))
 			&& (format.precision == (int)ft_strlen(num_str))))
