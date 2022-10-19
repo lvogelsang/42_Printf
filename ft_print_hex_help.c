@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:44:39 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 11:06:22 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:39:58 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ int	ft_hexstr_precision(t_format format, char *hex_str)
 	size_t	count;
 	char	*copy;
 	int		len;
-
-	format.zero = 0;
+	
+	if (format.precision == 0)
+	{
+		hex_str[0] = '\0';
+	}
 	if (format.precision > (int)ft_strlen(hex_str))
 	{
 		x = 0;

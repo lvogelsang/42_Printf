@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 10:53:25 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:38:50 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	ft_print_x(t_format format, unsigned int x)
 	if (hex_str == NULL)
 		return (0);
 	if (format.dot)
+	{
+		format.zero = 0;
 		i = ft_hexstr_precision(format, hex_str);
+	}
 	else
 		i = ft_strlen(hex_str);
 	if (format.width > i)

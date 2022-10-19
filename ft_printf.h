@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 11:18:48 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:42:33 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			ft_format_specifications(char *str, va_list *args);
 int			ft_hexstr_precision(t_format format, char *hex_str);
 int			ft_hex_digitcount(unsigned int x);
 int			ft_isdigit(int c);
-int			ft_numstr_precision(t_format format, char *num_str, int n);
+char			*ft_numstr_precision(t_format format, char *num_str, int n);
 int			ft_printf(const char *str, ...);
 int			ft_print_c(t_format format, int c);
 int			ft_print_d_i(t_format format, int n);

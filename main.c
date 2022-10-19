@@ -9,7 +9,7 @@ int	main(void)
 //	printf("%.4d\n", -14);
 //	ft_printf("%.2u\n", 1);
 //	ft_printf("%.4d\n", -14);
-	printf("%5%\n");
-	ft_printf("%5%\n");
+	ft_printf("%.20d\n", -1024);
+	printf("%.20d\n", -1024);
 }
 
