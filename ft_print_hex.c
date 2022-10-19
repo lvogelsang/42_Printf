@@ -6,14 +6,15 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 14:01:09 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:53:25 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // Print function for the conversion types 'x' & 'X'. These types 
-// consider the '-', '0', & '#' flags as well as width specifications.
+// consider the '-', '0', & '#' flags as well as width and 
+// precision specifications.
 
 // The base characters for hexadecimal are "0123456789abcdef" and 
 // "0123456789ABCDEF", respectively. 
@@ -29,9 +30,10 @@ int	ft_print_x(t_format format, unsigned int x)
 	hex_str = ft_hexstr(format, x);
 	if (hex_str == NULL)
 		return (0);
-	i = ft_hex_digitcount(x);
-	if (format.hash && x != 0)
-		i = i + 2;
+	if (format.dot)
+		i = ft_hexstr_precision(format, hex_str);
+	else
+		i = ft_strlen(hex_str);
 	if (format.width > i)
 	{
 		i = format.width;

@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 17:55:10 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:18:48 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ int			ft_atoi(const char *str);
 int			ft_digitcount(int n);
 int			ft_format(char *str, va_list *args);
 int			ft_format_specifications(char *str, va_list *args);
+int			ft_hexstr_precision(t_format format, char *hex_str);
 int			ft_hex_digitcount(unsigned int x);
 int			ft_isdigit(int c);
+int			ft_numstr_precision(t_format format, char *num_str, int n);
 int			ft_printf(const char *str, ...);
 int			ft_print_c(t_format format, int c);
 int			ft_print_d_i(t_format format, int n);
 int			ft_print_p(t_format format, size_t ptr);
-int			ft_print_pct(void);
+int			ft_print_pct(t_format format);
 int			ft_print_s(t_format format, char *s);
 int			ft_print_type(t_format format, va_list *args);
 int			ft_print_u(t_format format, unsigned int u);
@@ -61,7 +63,9 @@ int			ft_print_x(t_format format, unsigned int x);
 int			ft_ptr_digitcount(size_t ptr);
 int			ft_s_format(t_format format, char *s_str);
 int			ft_unsigned_digitcount(unsigned int u);
+int			ft_unsigned_numstr_precision(t_format format, char *num_str);
 
+size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlen(const char *s);
 
 t_format	ft_format_default(void);

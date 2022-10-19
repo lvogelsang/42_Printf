@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_print_unbrs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:44:36 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 15:51:16 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:38:34 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // Print function for the conversion type 'u'. This type considers the
-// '-' & '0' flags and width specifications.
+// '-' & '0' flags and width and precision specifications.
 
 // If a negative value is parsed as an unsigned integer, that value
 // is converted to its positive counterpart, i.e., 2^32 - u.
@@ -31,7 +31,10 @@ int	ft_print_u(t_format format, unsigned int u)
 	{
 		return (0);
 	}
-	i = ft_unsigned_digitcount(u);
+	if (format.dot)
+		i = ft_unsigned_numstr_precision(format, num_str);
+	else
+		i = ft_unsigned_digitcount(u);
 	if (format.width > i)
 	{
 		ft_format_adjustment(format, num_str);
@@ -86,4 +89,26 @@ int	ft_unsigned_digitcount(unsigned int u)
 		u = u / 10;
 	}
 	return (i);
+}
+
+int	ft_unsigned_numstr_precision(t_format format, char *num_str)
+{
+	int		count;
+	char	*copy;
+	int		len;
+
+	format.zero = 0;
+	if (format.precision > (int)ft_strlen(num_str))
+	{
+		count = format.precision - ft_strlen(num_str);
+		copy = ft_strdup(num_str);
+		if (copy == NULL)
+			return (0);
+		ft_memset(num_str, '0', count);
+		num_str[count] = '\0';
+		len = ft_strlen(num_str) + ft_strlen(copy);
+		ft_strlcat(num_str, copy, len + 1);
+		free (copy);
+	}
+	return (ft_strlen(num_str));
 }

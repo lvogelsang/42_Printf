@@ -6,14 +6,15 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 15:49:52 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:28:13 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // Print function for the conversion types 'd' and 'i'. These types consider 
-// the '+', ' ', '-', & '0' flags as well as width specifications.
+// the '+', ' ', '-', & '0' flags as well as width and
+// precision specifications.
 
 int	ft_print_d_i(t_format format, int n)
 {
@@ -24,9 +25,10 @@ int	ft_print_d_i(t_format format, int n)
 	num_str = ft_numstr_signed(format, n);
 	if (num_str == NULL)
 		return (0);
-	i = ft_digitcount(n);
-	if ((format.plus || format.space) && n >= 0)
-		i++;
+	if (format.dot)
+		i = ft_numstr_precision(format, num_str, n);
+	else
+		i = ft_strlen(num_str);
 	if (format.width > i)
 	{
 		len = format.width;
@@ -62,6 +64,34 @@ char	*ft_numstr_signed(t_format format, int n)
 	if (numstr == NULL)
 		return (NULL);
 	return (numstr);
+}
+
+int	ft_numstr_precision(t_format format, char *num_str, int n)
+{
+	int		x;
+	size_t	count;
+	char	*copy;
+	int		len;
+
+	format.zero = 0;
+	if ((format.precision > (int)ft_strlen(num_str))
+		|| ((format.plus || format.space || (n < 0))
+			&& (format.precision == (int)ft_strlen(num_str))))
+	{
+		x = 0;
+		count = format.precision - ft_strlen(num_str);
+		if (format.plus || format.space || (n < 0))
+			x = 1;
+		copy = ft_strdup(num_str + x);
+		if (copy == NULL)
+			return (0);
+		ft_memset(num_str + x, '0', count + x);
+		num_str[count + 2 * x] = '\0';
+		len = ft_strlen(num_str) + ft_strlen(copy);
+		ft_strlcat(num_str, copy, len + 1);
+		free (copy);
+	}
+	return (ft_strlen(num_str));
 }
 
 void	ft_numstr_help(t_format format, char *num_str, int n)

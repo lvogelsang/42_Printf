@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 17:56:20 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:18:13 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,31 @@
 // Print function for conversion type '%'. This type doesn`t accept any
 // flags or width specifications.
 
-int	ft_print_pct(void)
+int	ft_print_pct(t_format format)
 {
 	int	len;
-
-	len = 1;
-	ft_putchar_fd('%', 1);
+	
+	if (format.width > 1)
+	{
+		len = format.width;
+		if (format.minus)
+		{
+			ft_putchar_fd('%', 1);
+		}
+		while (--format.width)
+		{
+			ft_putchar_fd(' ', 1);
+		}
+		if (!(format.minus))
+		{
+			ft_putchar_fd('%', 1);
+		}
+	}
+	else
+	{
+		ft_putchar_fd('%', 1);
+		len = 1;
+	}
 	return (len);
 }
 
@@ -65,10 +84,12 @@ int	ft_print_s(t_format format, char *s)
 
 	if (!(s))
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		s_str = ft_strdup("(null)");
 	}
-	s_str = ft_strdup(s);
+	else
+	{
+		s_str = ft_strdup(s);
+	}
 	if (s_str == NULL)
 		return (0);
 	len = ft_s_format(format, s_str);

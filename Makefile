@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 08:28:32 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/10/18 13:29:06 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/10/19 10:54:37 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,14 @@ CFLAGS = -Wall -Wextra -Werror -c
 RM = rm -f
 
 SRCS = ft_format.c \ft_format_adjustment.c \ft_format_default.c \ft_print_chars.c \
-	ft_print_hex.c \ft_print_nbrs.c \ft_print_ptr.c \ft_print_unsigned.c \ft_printf.c
+	ft_print_hex_help.c \ft_print_hex.c \ft_print_nbrs.c \ft_print_ptr.c \
+	ft_print_unbrs.c \ft_printf.c
 
 OBJS = $(SRCS:.c=.o)
 
 BONUS_SRCS = ft_format.c \ft_format_adjustment.c \ft_format_default.c \ft_print_chars.c \
-	ft_print_hex.c \ft_print_nbrs.c \ft_print_ptr.c \ft_print_unbrs.c \ft_printf.c
+	ft_print_hex_help.c \ft_print_hex.c \ft_print_nbrs.c \ft_print_ptr.c \
+	ft_print_unbrs.c \ft_printf.c
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 

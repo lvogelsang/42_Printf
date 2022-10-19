@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 17:57:59 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:18:27 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_print_type(t_format format, va_list *args)
 
 	len = 0;
 	if (format.type == '%')
-		len = ft_print_pct();
+		len = ft_print_pct(format);
 	else if (format.type == 'c')
 		len = ft_print_c(format, va_arg(*args, int));
 	else if (format.type == 's')
