@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 17:03:12 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/19 17:49:53 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ typedef struct s_format
 char		*ft_hexstr(t_format format, unsigned int x);
 char		*ft_hex_itoa(unsigned int x, char *hex_base);
 char		*ft_itoa(int n);
-char		*ft_numstr_signed(t_format format, int n);
+char		*ft_numstr_d_i(t_format format, int n);
+char		*ft_numstr_precision(t_format format, char *num_str, int n);
+char		*ft_numstr_precision2(t_format format, char *num_str, int n);
+char		*ft_numstr_sign(t_format format, int n);
+char		*ft_precision_zero(t_format format, char *num_str, int n, int x);
 char		*ft_ptrstr(size_t ptr);
 char		*ft_ptr_itoa(size_t ptr);
 char		*ft_strchr(const char *s, int c);
@@ -50,7 +54,6 @@ int			ft_format_specifications(char *str, va_list *args);
 int			ft_hexstr_precision(t_format format, char *hex_str);
 int			ft_hex_digitcount(unsigned int x);
 int			ft_isdigit(int c);
-int			ft_numstr_precision(t_format format, char *num_str, int n);
 int			ft_printf(const char *str, ...);
 int			ft_print_c(t_format format, int c);
 int			ft_print_d_i(t_format format, int n);
@@ -72,6 +75,7 @@ t_format	ft_format_default(void);
 t_format	ft_format_flags(char *str, t_format format);
 t_format	ft_format_width(char *str, t_format format);
 
+void		*ft_calloc(size_t count, size_t size);
 void		ft_default_adjustment(t_format format, char *str);
 void		ft_format_adjustment(t_format format, char *str);
 void		ft_hexstr_help(t_format format, char *hex_str, unsigned int x);
