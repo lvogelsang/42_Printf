@@ -6,13 +6,13 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:47:15 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:03:18 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:35:37 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// Print function for the conversion type 'p'. This type considers
+// Print functions for the conversion type 'p'. This type considers
 // the '-' & '0' flags as well as width specifications.
 
 // The address of a pointer is in hexadecimal format, so we use similar
@@ -26,7 +26,7 @@ int	ft_print_p(t_format format, size_t p)
 	int		len;
 	int		x;
 
-	p_str = ft_p_str(p);
+	p_str = ft_str_p(p);
 	if (p_str == NULL)
 		return (0);
 	len = ft_strlen(p_str);
@@ -47,14 +47,14 @@ int	ft_print_p(t_format format, size_t p)
 	return (len);
 }
 
-char	*ft_p_str(size_t p)
+char	*ft_str_p(size_t p)
 {
 	char	*prefix;
 	char	*p_str;
 	char	*temp;
 
 	prefix = "0x";
-	temp = ft_p_itoa(p);
+	temp = ft_itoa_p(p);
 	p_str = ft_strjoin(prefix, temp);
 	free (temp);
 	if (p_str == NULL)
@@ -62,13 +62,13 @@ char	*ft_p_str(size_t p)
 	return (p_str);
 }
 
-char	*ft_p_itoa(size_t p)
+char	*ft_itoa_p(size_t p)
 {
 	char	*hex_base;
 	char	*p_str;
 	int		i;
 
-	i = ft_p_digitcount(p);
+	i = ft_digitcount_p(p);
 	p_str = (char *)malloc((i + 1) * sizeof(char));
 	if (p_str == NULL)
 		return (NULL);
@@ -85,7 +85,7 @@ char	*ft_p_itoa(size_t p)
 	return (p_str);
 }
 
-int	ft_p_digitcount(size_t p)
+int	ft_digitcount_p(size_t p)
 {
 	int	i;
 

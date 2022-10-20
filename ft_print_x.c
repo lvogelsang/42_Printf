@@ -6,13 +6,13 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:05:35 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:38:16 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// Print function for the conversion types 'x' & 'X'. These types 
+// Print functions for the conversion types 'x' & 'X'. These types 
 // consider the '-', '0', & '#' flags as well as width and 
 // precision specifications.
 
@@ -57,13 +57,9 @@ char	*ft_str_x(t_format format, unsigned int x)
 	if (x_str == NULL)
 		return (NULL);
 	if (format.dot)
-	{
 		x_str_format = ft__precision_x(format, x_str, x);
-	}
 	else
-	{
 		x_str_format = ft_strdup(x_str);
-	}
 	free (x_str);
 	if (x_str_format == NULL)
 		return (NULL);

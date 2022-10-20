@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 13:20:42 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:02:24 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:33:46 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ char	*ft_precision_d_i(t_format format, char *d_i_str, int n)
 	else if ((format.precision > (int)ft_strlen(d_i_str))
 		|| ((format.plus || format.space || (n < 0))
 			&& (format.precision == (int)ft_strlen(d_i_str))))
-	{
 		d_i_str_format = ft_precision_d_i_2(format, d_i_str, n);
-	}
 	else
 		d_i_str_format = ft_strdup(d_i_str);
 	if (d_i_str_format == NULL)

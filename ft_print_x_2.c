@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:36:27 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:06:07 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:38:55 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,9 @@ char	*ft__precision_x(t_format format, char *x_str, unsigned int x)
 	}
 	else if ((format.precision > (int)ft_strlen(x_str))
 		|| ((format.hash) && (format.precision > ((int)ft_strlen(x_str) - 2))))
-	{
 		x_str_format = ft_precision_x_2(format, x_str, x);
-	}
 	else
-	{
 		x_str_format = ft_strdup(x_str);
-	}
 	if (x_str_format == NULL)
 		return (NULL);
 	return (x_str_format);

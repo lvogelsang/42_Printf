@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:00:55 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:33:04 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ void	ft_format_c_pct(t_format format, int c)
 			ft_putchar_fd(' ', 1);
 	}
 	if (!(format.minus))
-	{
 		ft_putchar_fd(c, 1);
-	}
 }

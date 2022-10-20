@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:43:41 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:39:48 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void		ft_width_x(t_format format, char *x_str, unsigned int x);
 // '-' & '0' flags as well as width specifications.
 
 int			ft_print_p(t_format format, size_t p);
-char		*ft_p_str(size_t p);
-char		*ft_p_itoa(size_t p);
-int			ft_p_digitcount(size_t p);
+char		*ft_str_p(size_t p);
+char		*ft_itoa_p(size_t p);
+int			ft_digitcount_p(size_t p);
 
 #endif

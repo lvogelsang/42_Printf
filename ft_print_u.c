@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:44:36 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:04:28 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:36:34 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,9 @@ char	*ft_str_u(t_format format, unsigned int u)
 	if (u_str == NULL)
 		return (NULL);
 	if (format.dot)
-	{
 		u_str_format = ft_precision_u(format, u_str, u);
-	}
 	else
-	{
 		u_str_format = ft_strdup(u_str);
-	}
 	free (u_str);
 	if (u_str_format == NULL)
 		return (NULL);
@@ -76,14 +72,10 @@ char	*ft_itoa_u(unsigned int u)
 	i = ft_digitcount_u(u);
 	u_str = (char *)malloc((i + 1) * sizeof(char));
 	if (u_str == NULL)
-	{
 		return (NULL);
-	}
 	u_str[i] = '\0';
 	if (u == 0)
-	{
 		u_str[0] = '0';
-	}
 	while (u)
 	{
 		i--;
@@ -98,9 +90,7 @@ int	ft_digitcount_u(unsigned int u)
 	int	i;
 
 	if (u == 0)
-	{
 		return (1);
-	}
 	i = 0;
 	while (u)
 	{
