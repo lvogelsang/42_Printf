@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 08:28:32 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/10/19 10:54:37 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/10/20 15:14:52 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,17 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -c
 RM = rm -f
 
-SRCS = ft_format.c \ft_format_adjustment.c \ft_format_default.c \ft_print_chars.c \
-	ft_print_hex_help.c \ft_print_hex.c \ft_print_nbrs.c \ft_print_ptr.c \
-	ft_print_unbrs.c \ft_printf.c
-
+SRCS = ft_format.c \ft_format_default.c \ft_print_c_pct.c \ft_print_d_i.c \
+	ft_print_d_i_2.c \ft_print_p.c \ft_print_s.c \ft_print_u.c \
+	ft_print_u_2.c \ft_print_x.c \ft_print_x_2.c \ft_printf.c \
+	ft_width_adjustment.c
+	
 OBJS = $(SRCS:.c=.o)
 
-BONUS_SRCS = ft_format.c \ft_format_adjustment.c \ft_format_default.c \ft_print_chars.c \
-	ft_print_hex_help.c \ft_print_hex.c \ft_print_nbrs.c \ft_print_ptr.c \
-	ft_print_unbrs.c \ft_printf.c
+BONUS_SRCS = ft_format.c \ft_format_default.c \ft_print_c_pct.c \ft_print_d_i.c \
+	ft_print_d_i_2.c \ft_print_p.c \ft_print_s.c \ft_print_u.c \
+	ft_print_u_2.c \ft_print_x.c \ft_print_x_2.c \ft_printf.c \
+	ft_width_adjustment.c
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 

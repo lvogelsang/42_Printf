@@ -6,13 +6,13 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:39:35 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/13 18:26:32 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 13:19:01 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_format_adjustment(t_format format, char *str)
+void	ft_width_adjustment(t_format format, char *str)
 {
 	if (format.minus)
 	{

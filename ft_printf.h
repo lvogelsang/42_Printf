@@ -6,16 +6,17 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 11:24:34 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:14:06 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
+# include "./libft/libft.h"
 # include <stdarg.h>
-# include <stdlib.h>
+
+# define SPECIFIERS	"cspdiuxX%"
 
 typedef struct s_format
 {
@@ -30,65 +31,90 @@ typedef struct s_format
 	int	type;
 }		t_format;
 
-# define SPECIFIERS	"cspdiuxX%"
+// If ft_printf (by using ft_format) detects a '%' in str, we determine
+// which flags, widths and conversion types have been specified and print
+// the argument accordingly.
+// If there is no %, we simply print the character.
 
-char    *ft_hexstr(t_format format, unsigned int x);
-char    *ft_hexstr_precision_zero(t_format format, char *hex_str, int i);
-char		*ft_hexstr_x(t_format format, unsigned int x);
-char    	*ft_hexstr_precision2(t_format format, char *hex_str, unsigned int x);
-char		*ft_hex_itoa(unsigned int x, char *hex_base);
-char		*ft_itoa(int n);
-char		*ft_numstr_d_i(t_format format, int n);
-char		*ft_numstr_precision(t_format format, char *num_str, int n);
-char		*ft_numstr_precision2(t_format format, char *num_str, int n);
-char		*ft_numstr_sign(t_format format, int n);
-char		*ft_numstr_u(t_format format, unsigned int u);
-char		*ft_precision_zero(t_format format, char *num_str, int n, int x);
-char		*ft_ptrstr(size_t ptr);
-char		*ft_ptr_itoa(size_t ptr);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strdup(const char *s1);
-char		*ft_strjoin(char const *s1, char const *s2);
-char		*ft_unsigned_itoa(unsigned int u);
-char		*ft_unsigned_numstr_precision(t_format format, char *num_str, unsigned int u);
-char    	*ft_unsigned_numstr_precision2(t_format format, char *num_str);
-
-int			ft_atoi(const char *str);
-int			ft_digitcount(int n);
-int			ft_format(char *str, va_list *args);
-int			ft_format_specifications(char *str, va_list *args);
-char			*ft_hexstr_precision(t_format format, char *hex_str, unsigned int x);
-int			ft_hex_digitcount(unsigned int x);
-int			ft_isdigit(int c);
 int			ft_printf(const char *str, ...);
-int			ft_print_c(t_format format, int c);
-int			ft_print_d_i(t_format format, int n);
-int			ft_print_p(t_format format, size_t ptr);
-int			ft_print_pct(t_format format);
-int			ft_print_s(t_format format, char *s);
-int			ft_print_type(t_format format, va_list *args);
-int			ft_print_u(t_format format, unsigned int u);
-int			ft_print_x(t_format format, unsigned int x);
-int			ft_ptr_digitcount(size_t ptr);
-int			ft_s_format(t_format format, char *s_str);
-int			ft_unsigned_digitcount(unsigned int u);
+int			ft_format(char *str, va_list *args);
 
-size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t		ft_strlen(const char *s);
+// The function ft_format_specifications test for flags, width, precision
+// and then determines the conversion type. All this will be stored in the
+// new structure 'format'.
 
+int			ft_format_specifications(char *str, va_list *args);
 t_format	ft_format_default(void);
 t_format	ft_format_flags(char *str, t_format format);
 t_format	ft_format_width(char *str, t_format format);
 
-void		*ft_calloc(size_t count, size_t size);
-void		ft_default_adjustment(t_format format, char *str);
-void		ft_format_adjustment(t_format format, char *str);
-void		ft_hexstr_help(t_format format, char *hex_str, unsigned int x);
-void		*ft_memset(void *b, int c, size_t len);
+// Determines the conversion type and refers it to the respective print 
+// function.
+
+int			ft_print_type(t_format format, va_list *args);
+
+// Helper functions that adjust the output accordingly when width is
+// specified and which are used for most conversion types. Handles the '-'
+// and '0' flags.
+
+void		ft_width_adjustment(t_format format, char *str);
 void		ft_minus_adjustment(t_format format, char *str);
-void		ft_numstr_help(t_format format, char *num_str, int n);
-void		ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd);
 void		ft_zero_adjustment(t_format format, char *str);
+void		ft_default_adjustment(t_format format, char *str);
+
+// Print functions for conversion type '%' and 'c'. These types accept the
+// '-' and '0' flags as well as width specifications.
+
+int			ft_print_c_pct(t_format format, va_list *args);
+void		ft_format_c_pct(t_format format, int c);
+
+// Print functions for conversion type 's'. This type considers the '-'
+// flag and width and precision specifications.
+
+int			ft_print_s(t_format format, char *s);
+int			ft_format_s(t_format format, char *s_str);
+
+// Print functions for the conversion types 'd' and 'i'. These types consider
+// the '+', ' ', '-', & '0' flags as well as width and precision specifications.
+
+int			ft_print_d_i(t_format format, int n);
+char		*ft_str_d_i(t_format format, int n);
+char		*ft_sign_d_i(t_format format, int n);
+char		*ft_precision_d_i(t_format format, char *d_i_str, int n);
+char		*ft_precision_d_i_2(t_format format, char *d_i_str, int n);
+char		*ft_precision_zero_d_i(t_format format, \
+char *d_i_str, int n, int x);
+void		ft_width_d_i(t_format format, char *d_i_str, int n);
+
+// Print functions for the conversion type 'u'. This type considers the
+// '-' & '0' flags and width and precision specifications.
+
+int			ft_print_u(t_format format, unsigned int u);
+char		*ft_str_u(t_format format, unsigned int u);
+char		*ft_itoa_u(unsigned int u);
+int			ft_digitcount_u(unsigned int u);
+char		*ft_precision_u(t_format format, char *u_str, unsigned int u);
+char		*ft_precision_u_2(t_format format, char *u_str);
+
+// Print function for the conversion types 'x' & 'X'. These types consider
+// the '-', '0', & '#' flags as well as width and precision specifications.
+
+int			ft_print_x(t_format format, unsigned int x);
+char		*ft_str_x(t_format format, unsigned int x);
+char		*ft_str_x_2(t_format format, unsigned int x);
+char		*ft_itoa_x(unsigned int x, char *hex_base);
+int			ft_digitcount_x(unsigned int x);
+char		*ft__precision_x(t_format format, char *x_str, unsigned int x);
+char		*ft_precision_x_2(t_format format, char *x_str, unsigned int x);
+char		*ft_precision_zero_x(t_format format, char *x_str, int i);
+void		ft_width_x(t_format format, char *x_str, unsigned int x);
+
+// Print functions for the conversion type 'p'. This type considers the 
+// '-' & '0' flags as well as width specifications.
+
+int			ft_print_p(t_format format, size_t p);
+char		*ft_p_str(size_t p);
+char		*ft_p_itoa(size_t p);
+int			ft_p_digitcount(size_t p);
 
 #endif

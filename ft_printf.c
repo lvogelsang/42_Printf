@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:37:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 11:18:27 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:59:08 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	args;
 	int		len;
+	va_list	args;
 
 	va_start(args, str);
 	len = ft_format((char *)str, &args);
@@ -37,8 +37,8 @@ int	ft_printf(const char *str, ...)
 
 int	ft_format(char *str, va_list *args)
 {
-	int		len;
 	char	*start;
+	int		len;
 
 	len = 0;
 	while (*str)
@@ -72,10 +72,8 @@ int	ft_print_type(t_format format, va_list *args)
 	int	len;
 
 	len = 0;
-	if (format.type == '%')
-		len = ft_print_pct(format);
-	else if (format.type == 'c')
-		len = ft_print_c(format, va_arg(*args, int));
+	if (format.type == '%' || format.type == 'c')
+		len = ft_print_c_pct(format, args);
 	else if (format.type == 's')
 		len = ft_print_s(format, va_arg(*args, char *));
 	else if (format.type == 'd' || format.type == 'i')

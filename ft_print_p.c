@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_print_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:47:15 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/17 11:01:27 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:03:18 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,84 +20,81 @@
 // we use size_t instead of unsigned int as size_t can get as big as the
 // addressable memory space, while unsigned int has a minimum range.
 
-int	ft_print_p(t_format format, size_t ptr)
+int	ft_print_p(t_format format, size_t p)
 {
-	char	*ptr_str;
-	int		i;
+	char	*p_str;
+	int		len;
+	int		x;
 
-	ptr_str = ft_ptrstr(ptr);
-	if (ptr_str == NULL)
+	p_str = ft_p_str(p);
+	if (p_str == NULL)
 		return (0);
-	i = ft_ptr_digitcount(ptr);
-	i = i + 2;
-	if (format.width > i)
+	len = ft_strlen(p_str);
+	if (format.width > len)
 	{
+		len = format.width;
+		x = 0;
 		if (format.zero && !(format.minus))
 		{
-			ft_putchar_fd(*ptr_str++, 1);
-			ft_putchar_fd(*ptr_str++, 1);
+			ft_putchar_fd(p_str[x++], 1);
+			ft_putchar_fd(p_str[x++], 1);
 		}
-		ft_format_adjustment(format, ptr_str);
-		i = format.width;
+		ft_width_adjustment(format, &p_str[x]);
 	}
 	else
-		ft_putstr_fd(ptr_str, 1);
-	free (ptr_str);
-	return (i);
+		ft_putstr_fd(p_str, 1);
+	free (p_str);
+	return (len);
 }
 
-char	*ft_ptrstr(size_t ptr)
+char	*ft_p_str(size_t p)
 {
 	char	*prefix;
+	char	*p_str;
 	char	*temp;
-	char	*ptr_str;
 
 	prefix = "0x";
-	temp = ft_ptr_itoa(ptr);
-	ptr_str = ft_strjoin(prefix, temp);
+	temp = ft_p_itoa(p);
+	p_str = ft_strjoin(prefix, temp);
 	free (temp);
-	if (ptr_str == NULL)
-	{
+	if (p_str == NULL)
 		return (NULL);
-	}
-	return (ptr_str);
+	return (p_str);
 }
 
-char	*ft_ptr_itoa(size_t ptr)
+char	*ft_p_itoa(size_t p)
 {
-	int		i;
-	char	*ptr_str;
 	char	*hex_base;
+	char	*p_str;
+	int		i;
 
-	i = ft_ptr_digitcount(ptr);
-	ptr_str = (char *)malloc((i + 1) * sizeof(char));
-	if (ptr_str == NULL)
+	i = ft_p_digitcount(p);
+	p_str = (char *)malloc((i + 1) * sizeof(char));
+	if (p_str == NULL)
 		return (NULL);
-	ptr_str[i] = '\0';
-	if (ptr == 0)
-		ptr_str[0] = '0';
+	p_str[i] = '\0';
+	if (p == 0)
+		p_str[0] = '0';
 	hex_base = "0123456789abcdef";
-	while (ptr)
+	while (p)
 	{
 		i--;
-		ptr_str[i] = hex_base[ptr % 16];
-		ptr = ptr / 16;
+		p_str[i] = hex_base[p % 16];
+		p = p / 16;
 	}
-	return (ptr_str);
+	return (p_str);
 }
 
-int	ft_ptr_digitcount(size_t ptr)
+int	ft_p_digitcount(size_t p)
 {
 	int	i;
 
-	if (ptr == 0)
-	{
+	if (p == 0)
 		return (1);
-	}
 	i = 0;
-	while (ptr)
+	while (p)
 	{
-		ptr = ptr / 16;
+		p = p / 16;
 		i++;
 	}
 	return (i);

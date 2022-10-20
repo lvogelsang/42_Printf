@@ -6,20 +6,19 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:11:01 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 18:53:18 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:00:11 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 // First calls functions to test for flags and width and then determines the
-// conversion type. All this will be stored in the new structure 'specs'. 
+// conversion type. All this will be stored in the new structure 'format'. 
 
-#include <stdio.h>
 int	ft_format_specifications(char *str, va_list *args)
 {
-	t_format	format;
 	int			len;
+	t_format	format;
 
 	format = ft_format_default();
 	format = ft_format_flags(str, format);
@@ -47,17 +46,11 @@ t_format	ft_format_flags(char *str, t_format format)
 	while (!ft_strchr(SPECIFIERS, *str) && *str != '.')
 	{
 		if (*str == '+')
-		{
 			format.plus = 1;
-		}
 		if (*str == ' ')
-		{
 			format.space = 1;
-		}
 		if (*str == '#')
-		{
 			format.hash = 1;
-		}
 		str++;
 	}
 	return (format);
@@ -71,13 +64,9 @@ t_format	ft_format_width(char *str, t_format format)
 	while (!(ft_strchr(SPECIFIERS, *str)) && *str != '.')
 	{
 		if (*str == '-')
-		{
 			format.minus = 1;
-		}
 		if (*str == '0' && !(ft_isdigit(*(str - 1))))
-		{
 			format.zero = 1;
-		}
 		if (*str > '0' && *str <= '9')
 		{
 			format.width = ft_atoi(str);

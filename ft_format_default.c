@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:13:48 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/18 15:27:22 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:35:15 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // '-' => Specifies left adjustment of the output.
 
 // '0' => Specifies that zero-padding should be used rather than 
-// blank-padding for numeric types. A '-' overrides a '0' if both are used.
+// blank-padding. A '-' overrides a '0' if both are used.
 
 t_format	ft_format_default(void)
 {
