@@ -6,7 +6,7 @@
 #    By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 09:21:56 by lvogelsa          #+#    #+#              #
-#    Updated: 2022/10/09 13:21:25 by lvogelsa         ###   ########.fr        #
+#    Updated: 2022/10/20 15:55:02 by lvogelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,24 +22,17 @@ SRCS = ft_atoi.c \ft_bzero.c \ft_calloc.c \ft_isalnum.c \ft_isalpha.c \
 	ft_split.c \ft_strchr.c \ft_strdup.c \ft_striteri.c \ft_strjoin.c \
 	ft_strlcat.c \ft_strlcpy.c \ft_strlen.c \ft_strmapi.c \
 	ft_strncmp.c \ft_strnstr.c \ft_strrchr.c \ft_strtrim.c \
-	ft_substr.c \ft_tolower.c \ft_toupper.c
+	ft_substr.c \ft_tolower.c \ft_toupper.c \ft_lstadd_back.c \
+	ft_lstadd_front.c ft_lstclear.c \ft_lstdelone.c \ft_lstiter.c \
+	ft_lstlast.c \ft_lstmap.c \ft_lstnew.c \ft_lstsize.c
 
 OBJS = $(SRCS:.c=.o)
-
-BONUS_SRCS = ft_lstadd_back.c \ft_lstadd_front.c ft_lstclear.c \ft_lstdelone.c \
-		ft_lstiter.c \ft_lstlast.c \ft_lstmap.c \ft_lstnew.c \ft_lstsize.c
-
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME):
 	$(CC) $(CFLAGS) $(SRCS)
 	ar rcs $(NAME) $(OBJS)
-
-bonus:
-	$(CC) $(CFLAGS) $(SRCS) $(BONUS_SRCS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 clean:
 	$(RM) $(OBJS)
