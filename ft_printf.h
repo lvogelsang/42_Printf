@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 17:49:53 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:24:34 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ typedef struct s_format
 
 # define SPECIFIERS	"cspdiuxX%"
 
-char		*ft_hexstr(t_format format, unsigned int x);
+char    *ft_hexstr(t_format format, unsigned int x);
+char    *ft_hexstr_precision_zero(t_format format, char *hex_str, int i);
+char		*ft_hexstr_x(t_format format, unsigned int x);
+char    	*ft_hexstr_precision2(t_format format, char *hex_str, unsigned int x);
 char		*ft_hex_itoa(unsigned int x, char *hex_base);
 char		*ft_itoa(int n);
 char		*ft_numstr_d_i(t_format format, int n);
 char		*ft_numstr_precision(t_format format, char *num_str, int n);
 char		*ft_numstr_precision2(t_format format, char *num_str, int n);
 char		*ft_numstr_sign(t_format format, int n);
+char		*ft_numstr_u(t_format format, unsigned int u);
 char		*ft_precision_zero(t_format format, char *num_str, int n, int x);
 char		*ft_ptrstr(size_t ptr);
 char		*ft_ptr_itoa(size_t ptr);
@@ -46,12 +50,14 @@ char		*ft_strchr(const char *s, int c);
 char		*ft_strdup(const char *s1);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_unsigned_itoa(unsigned int u);
+char		*ft_unsigned_numstr_precision(t_format format, char *num_str, unsigned int u);
+char    	*ft_unsigned_numstr_precision2(t_format format, char *num_str);
 
 int			ft_atoi(const char *str);
 int			ft_digitcount(int n);
 int			ft_format(char *str, va_list *args);
 int			ft_format_specifications(char *str, va_list *args);
-int			ft_hexstr_precision(t_format format, char *hex_str);
+char			*ft_hexstr_precision(t_format format, char *hex_str, unsigned int x);
 int			ft_hex_digitcount(unsigned int x);
 int			ft_isdigit(int c);
 int			ft_printf(const char *str, ...);
@@ -66,7 +72,6 @@ int			ft_print_x(t_format format, unsigned int x);
 int			ft_ptr_digitcount(size_t ptr);
 int			ft_s_format(t_format format, char *s_str);
 int			ft_unsigned_digitcount(unsigned int u);
-int			ft_unsigned_numstr_precision(t_format format, char *num_str);
 
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlen(const char *s);

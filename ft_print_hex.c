@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 12:20:46 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 11:38:50 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:16:04 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,32 @@
 // by 16. The hex value of that decimal number is the sequence of remainders 
 // (in hex) from the last to the first.
 
+int	ft_print_x(t_format format, unsigned int x)
+{
+	char	*hexstr;
+	int	i;
+	int	len;
+
+	hexstr = ft_hexstr_x(format, x);
+	if (hexstr == NULL)
+		return (0);
+	if (format.dot)
+		format.zero = 0;
+	i = ft_strlen(hexstr);
+	if (format.width > i)
+	{
+		len = format.width;
+		ft_hexstr_help(format, hexstr, x);
+	}
+	else
+	{
+		len = i;
+		ft_putstr_fd(hexstr, 1);
+	}
+	free (hexstr);
+	return (len);
+}
+/*
 int	ft_print_x(t_format format, unsigned int x)
 {
 	char	*hex_str;
@@ -46,6 +72,28 @@ int	ft_print_x(t_format format, unsigned int x)
 		ft_putstr_fd(hex_str, 1);
 	free (hex_str);
 	return (i);
+}*/
+
+char	*ft_hexstr_x(t_format format, unsigned int x)
+{
+	char	*hexstr;
+	char	*hexstr_format;
+
+	hexstr = ft_hexstr(format, x);
+	if (hexstr == NULL)
+		return (NULL);
+	if (format.dot)
+	{
+		hexstr_format = ft_hexstr_precision(format, hexstr, x);
+	}
+	else
+	{
+		hexstr_format = ft_strdup(hexstr);
+	}
+	free (hexstr);
+	if (hexstr_format == NULL)
+		return (NULL);
+	return (hexstr_format);
 }
 
 char	*ft_hexstr(t_format format, unsigned int x)
@@ -54,7 +102,8 @@ char	*ft_hexstr(t_format format, unsigned int x)
 	char	*prefix;
 	char	*temp;
 	char	*hex_str;
-
+	
+	// check if x is already a hex number.
 	if (format.type == 'x')
 		hex_base = "0123456789abcdef";
 	else if (format.type == 'X')
@@ -80,7 +129,7 @@ char	*ft_hex_itoa(unsigned int x, char *hex_base)
 {
 	int		i;
 	char	*hex_str;
-
+	
 	i = ft_hex_digitcount(x);
 	hex_str = (char *)malloc((i + 1) * sizeof(char));
 	if (hex_str == NULL)

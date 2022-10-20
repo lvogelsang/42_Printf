@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:44:36 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 11:36:51 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 09:35:45 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,49 @@
 int	ft_print_u(t_format format, unsigned int u)
 {
 	char	*num_str;
-	int		i;
-	int		len;
+	int	i;
+	int	len;
 
-	num_str = ft_unsigned_itoa(u);
+	num_str = ft_numstr_u(format, u);
 	if (num_str == NULL)
-	{
 		return (0);
-	}
 	if (format.dot)
-	{
 		format.zero = 0;
-		i = ft_unsigned_numstr_precision(format, num_str);
-	}
-	else
-		i = ft_unsigned_digitcount(u);
+	i = ft_strlen(num_str);
 	if (format.width > i)
 	{
-		ft_format_adjustment(format, num_str);
 		len = format.width;
+		ft_format_adjustment(format, num_str);
 	}
 	else
 	{
-		ft_putstr_fd(num_str, 1);
 		len = i;
+		ft_putstr_fd(num_str, 1);
 	}
 	free (num_str);
 	return (len);
+}
+
+char	*ft_numstr_u(t_format format, unsigned int u)
+{
+	char	*numstr_u;
+	char	*numstr_format;
+
+	numstr_u = ft_unsigned_itoa(u);
+	if (numstr_u == NULL)
+		return (NULL);
+	if (format.dot)
+	{
+		numstr_format = ft_unsigned_numstr_precision(format, numstr_u, u);
+	}
+	else
+	{
+		numstr_format = ft_strdup(numstr_u);
+	}
+	free (numstr_u);
+	if (numstr_format ==  NULL)
+		return (NULL);
+	return (numstr_format);
 }
 
 char	*ft_unsigned_itoa(unsigned int u)
@@ -94,13 +110,62 @@ int	ft_unsigned_digitcount(unsigned int u)
 	return (i);
 }
 
-int	ft_unsigned_numstr_precision(t_format format, char *num_str)
+char	*ft_unsigned_numstr_precision(t_format format, char *num_str, unsigned int u)
 {
+	char	*numstr_format;
+
+	if (format.precision == 0 && u == 0)
+	{
+		numstr_format = (char *)malloc(sizeof(char));
+		if (numstr_format == NULL)
+			return (NULL);
+		numstr_format[0] = '\0';
+	}
+	else if (format.precision > (int)ft_strlen(num_str))
+	{
+		numstr_format = ft_unsigned_numstr_precision2(format, num_str);
+	}
+	else
+	{
+		numstr_format = ft_strdup(num_str);
+	}
+	if (numstr_format == NULL)
+		return (NULL);
+	return (numstr_format);
+}
+
+char	*ft_unsigned_numstr_precision2(t_format format, char *num_str)
+{
+	int	count;
+	char	*zero;
+	int	i;
+	char	*numstr_format;
+
+	count = format.precision - ft_strlen(num_str);
+	zero = (char *)malloc(count * sizeof(char));
+	if (zero == NULL)
+		return (NULL);
+	i = 0;
+	while (i < count)
+	{
+		zero[i] = '0';
+		i++;
+	}
+	zero[i] = '\0';
+	numstr_format = ft_strjoin(zero, num_str);
+	free (zero);
+	if (numstr_format == NULL)
+		return (NULL);
+	return (numstr_format);
+}
+/*
+	num
+
 	int		count;
 	char	*copy;
 	int		len;
 
-	if (format.precision == 0)
+	if (format.precision == 0 && u == 0)
 	{
 		num_str[0] = '\0';
 	}
@@ -117,4 +182,4 @@ int	ft_unsigned_numstr_precision(t_format format, char *num_str)
 		free (copy);
 	}
 	return (ft_strlen(num_str));
-}
+}*/

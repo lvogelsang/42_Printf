@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/19 11:18:13 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:23:38 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	ft_print_pct(t_format format)
 		}
 		while (--format.width)
 		{
-			ft_putchar_fd(' ', 1);
+			if (format.zero && !(format.minus))
+				ft_putchar_fd('0', 1);
+			else
+				ft_putchar_fd(' ', 1);
 		}
 		if (!(format.minus))
 		{
@@ -59,7 +62,10 @@ int	ft_print_c(t_format format, int c)
 		}
 		while (--format.width)
 		{
-			ft_putchar_fd(' ', 1);
+			if (format.zero && !(format.minus))
+				ft_putchar_fd('0', 1);
+			else
+				ft_putchar_fd(' ', 1);
 		}
 		if (!(format.minus))
 		{
