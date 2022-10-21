@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:18:30 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/21 09:37:05 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:28:09 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_precision_u_2(t_format format, char *u_str)
 	int		i;
 
 	count = format.precision - ft_strlen(u_str);
-	zero = (char *)malloc(count * sizeof(char));
+	zero = (char *)malloc((count + 1) * sizeof(char));
 	if (zero == NULL)
 		return (NULL);
 	i = 0;

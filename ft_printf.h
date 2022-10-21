@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:43:51 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/21 09:39:48 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:11:42 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int			ft_format_s(t_format format, char *s_str);
 int			ft_print_d_i(t_format format, int n);
 char		*ft_str_d_i(t_format format, int n);
 char		*ft_sign_d_i(t_format format, int n);
-char		*ft_precision_d_i(t_format format, char *d_i_str, int n);
-char		*ft_precision_d_i_2(t_format format, char *d_i_str, int n);
+char		*ft_precision_d_i(t_format format, char *d_i_str, int n, int x);
+char		*ft_precision_d_i_2(t_format format, char *d_i_str, int n, int x);
 char		*ft_precision_zero_d_i(t_format format, \
 char *d_i_str, int n, int x);
 void		ft_width_d_i(t_format format, char *d_i_str, int n);

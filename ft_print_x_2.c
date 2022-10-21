@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:36:27 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/21 09:38:55 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:40:26 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*ft__precision_x(t_format format, char *x_str, unsigned int x)
 		x_str_format[0] = '\0';
 	}
 	else if ((format.precision > (int)ft_strlen(x_str))
-		|| ((format.hash) && (format.precision > ((int)ft_strlen(x_str) - 2))))
+		|| ((format.hash) && (format.precision > ((int)ft_strlen(x_str) - 2))
+			&& x != 0))
 		x_str_format = ft_precision_x_2(format, x_str, x);
 	else
 		x_str_format = ft_strdup(x_str);
@@ -59,17 +60,17 @@ char	*ft_precision_zero_x(t_format format, char *x_str, int i)
 	int		j;
 
 	count = format.precision - ft_strlen(x_str);
-	zero = (char *)malloc((count + i) * sizeof(char));
+	zero = (char *)malloc((count + i * 2 + 1) * sizeof(char));
 	if (zero == NULL)
 		return (NULL);
 	j = 0;
-	if (format.hash)
+	if (i == 2)
 	{
 		zero[0] = x_str[0];
 		zero[1] = x_str[1];
 		j = j + 2;
 	}
-	while (j < (count + i))
+	while (j < (count + i * 2))
 	{
 		zero[j] = '0';
 		j++;

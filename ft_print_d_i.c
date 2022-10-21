@@ -6,7 +6,7 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 09:43:59 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 15:01:47 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:41:15 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,18 @@ char	*ft_str_d_i(t_format format, int n)
 {
 	char	*d_i_str_format;
 	char	*d_i_str_sign;
+	int		x;
 
 	d_i_str_sign = ft_sign_d_i(format, n);
 	if (d_i_str_sign == NULL)
 		return (NULL);
 	if (format.dot)
-		d_i_str_format = ft_precision_d_i(format, d_i_str_sign, n);
+	{
+		x = 0;
+		if (format.plus || format.space || (n < 0))
+			x = 1;
+		d_i_str_format = ft_precision_d_i(format, d_i_str_sign, n, x);
+	}
 	else
 		d_i_str_format = ft_strdup(d_i_str_sign);
 	free (d_i_str_sign);
