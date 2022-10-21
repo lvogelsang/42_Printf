@@ -6,13 +6,13 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 08:48:45 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/21 09:33:04 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:54:14 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// Print function for conversion type '%' and 'c'. These types accept the
+// Print functions for conversion type '%' and 'c'. These types accept the
 // '-' and '0' flags as well as width specifications.
 
 int	ft_print_c_pct(t_format format, va_list *args)

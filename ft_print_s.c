@@ -6,13 +6,13 @@
 /*   By: lvogelsa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 12:50:44 by lvogelsa          #+#    #+#             */
-/*   Updated: 2022/10/20 13:19:52 by lvogelsa         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:53:19 by lvogelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// Print function for conversion type 's'. This type considers the '-' flag
+// Print functions for conversion type 's'. This type considers the '-' flag
 // and width and precision specifications.
 
 int	ft_print_s(t_format format, char *s)
